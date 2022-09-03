@@ -45,12 +45,13 @@ def run(phi, lam, SNR):
     M = 100
     
     res = []
-    if phi_s<phi or (lam==0. and phi_s==1.):
-        continue
+
     
     M_list = np.arange(1,100+1)
     phis_list = (n * phi) / (n / M_list)
     for M, phi_s in enumerate(M_list):
+        if lam==0. and phi_s==1.:
+            continue
         for i in range(n_simu):
             np.random.seed(i)
             beta0, X, Y, X_test, Y_test = generate_data(n, phi, rho, sigma)
