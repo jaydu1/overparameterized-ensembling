@@ -25,6 +25,8 @@ def comp_theoretic_risk_M1(rho, sigma, lam, phi_s):
 
 
 def comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M, replace=True):
+    if phi_s == np.inf:
+        return rho**2, sigma**2, rho**2 + sigma**2
     if M==1:
         return comp_theoretic_risk_M1(rho, sigma, lam, phi_s)
     elif replace and M==2:
@@ -44,11 +46,6 @@ def comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M, replace=True):
 
         else:
             v = v_phi_lam(phi_s,lam)
-#             c = (phi_s/phi-1) * (1 + v)
-#             tv_c = v_phi_lam_extend(phi_0, lam, c=c)
-#             tv_v = vv_phi_lam_extend(phi_0, lam, c=c, v=tv_c)
-#             tv_b = vb_phi_lam_extend(phi_0, lam, c=c, v=tv_c)
-#             print(1+tv_b, vb_lam_phis_phi(phi_s,phi,lam, v=v))
             B0 = 0.5 * rho**2 * (
                 (1 + vb_phi_lam(phi_s,lam)) / (1 + v)**2 +
                 vb_lam_phis_phi(lam,phi_s,phi, v=v) / (1 + v)**2
@@ -115,15 +112,6 @@ def comp_true_empirical_risk(X, Y, phi_s, lam, rho, sigma, beta0, M, replace=Tru
         *[compute_cov(X[ids,:], lam) for ids in ids_list])
     T1_list = np.stack(T1_list, axis=0)
     T1_list = np.mean(T1_list, 0)
-        
-#         ids1 = np.sort(np.random.choice(n,k,replace=False))
-#     ids2 = np.sort(np.random.choice(n,k,replace=False))
-    
-        
-    
-#     Sigma1, M1, T1_1, T2_1 = compute_cov(X[ids1,:], lam)
-#     Sigma2, M2, T1_2, T2_2 = compute_cov(X[ids2,:], lam)
-
     
     if rho==0:
         B0 = 0
@@ -134,18 +122,6 @@ def comp_true_empirical_risk(X, Y, phi_s, lam, rho, sigma, beta0, M, replace=Tru
     if sigma==0:
         V0 = 0.
     else:
-#         eps = Y - X @ beta0[:, None]
-#         L1 = np.zeros(n)
-#         L1[ids1] = 1
-#         L1 = np.diag(L1)
-#         L2 = np.zeros(n)
-#         L2[ids2] = 1
-#         L2 = np.diag(L2)
-#         V0 = eps.T @ (M1 @ X.T @ L1 + M2 @ X.T @ L2).T @ (M1 @ X.T @ L1 + M2 @ X.T @ L2) @ eps / k**2 / 4
-#         V0 = V0[0,0]
-  
-#         V0 = sigma**2/k/4 * (np.trace(T2_1) + np.trace(T2_2))
-        
         V0 = sigma**2/M**2 * np.sum([np.trace(T2) for T2 in T2_list])
 
         if replace:
@@ -173,29 +149,18 @@ def fit_predict(X, Y, X_test, lam):
 
 
 def comp_empirical_risk(X, Y, X_test, Y_test, 
-                        phi_s, lam, M=2, data_val=None, replace=True):
+                        phi_s, lam, M=2, data_val=None, replace=True, return_allM=False):
     n,p = X.shape
-    
+    Y_test = Y_test.reshape((-1,1))    
     if data_val is not None:
         X_val, Y_val = data_val
-        Y_val_hat = np.r_[
-            np.zeros_like(Y_val), np.zeros_like(Y_test)]
+        Y_val = Y_val.reshape((-1,1))
+        Y_hat = np.zeros((Y_test.shape[0]+Y_val.shape[0], M))
         X_eval = np.r_[X_val, X_test]
     else:
-        Y_hat = np.zeros_like(Y_test)
+        Y_hat = np.zeros((Y_test.shape[0], M))
         X_eval = X_test
         
-    # rescale training data
-#     X = X/np.sqrt(k)
-#     Y = Y/np.sqrt(k)
-#     i0 = int(k**2/n)
-#     i0 = np.minimum(int(p/phi_0), k)
-#     ids_com = np.sort(np.random.choice(n,i0,replace=False))
-#     if i0<n:
-#         ids_ind = np.random.choice(np.setdiff1d(np.arange(n), ids_com),2*(k-i0),replace=False)
-#     else:
-#         ids_ind = []
-    
     if replace:
         k = int(p/phi_s)
         ids_list = [np.sort(np.random.choice(n,k,replace=False)) for j in range(M)]
@@ -205,13 +170,47 @@ def comp_empirical_risk(X, Y, X_test, Y_test,
         ids_list = np.array_split(np.random.permutation(np.arange(n)), M)
     for j in range(M):
         ids = ids_list[j]
-#         ids = np.r_[ids_com, ids_ind[j*(k-i0):(j+1)*(k-i0)]].astype(int)
-        Y_hat += fit_predict(X[ids,:]/np.sqrt(len(ids)), Y[ids,:]/np.sqrt(len(ids)), X_eval, lam)
-    Y_hat /= M
-    risk_test = np.mean((Y_hat[-Y_test.shape[0]:]-Y_test)**2)
+        Y_hat[:,j:j+1] = fit_predict(X[ids,:]/np.sqrt(len(ids)), Y[ids,:]/np.sqrt(len(ids)), X_eval, lam)
+        
+    if return_allM:
+        Y_hat = np.cumsum(Y_hat, axis=1) / np.arange(1,M+1)
+        idM = np.arange(M)
+    else:
+        Y_hat = np.mean(Y_hat, axis=1, keepdims=True)
+        idM = 0
+        
+    risk_test = np.mean((Y_hat[-Y_test.shape[0]:,:]-Y_test)**2, axis=0)[idM]
     if data_val is not None:
-        risk_val = np.mean((Y_hat[:-Y_test.shape[0]]-Y_val)**2)
+        risk_val = np.mean((Y_hat[:-Y_test.shape[0],:]-Y_val)**2, axis=0)[idM]
         return risk_val, risk_test
     else:
         return risk_test
     
+    
+    
+def cross_validation(X, Y, X_test, Y_test, lam, M, nu=0.6, replace=True):
+    assert 0.5 < nu < 1
+    n, p = X.shape
+    n_val = int(2 * np.sqrt(n))
+    n_train = n - n_val
+    n_base = int(n_train**nu)
+    
+    ids_val = np.sort(np.random.choice(n,n_val,replace=False))
+    ids_train = np.setdiff1d(np.arange(n),ids_val)
+    X_val, Y_val = X[ids_val,:], Y[ids_val,:]
+    X_train, Y_train = X[ids_train,:], Y[ids_train,:]
+    
+    k_list = np.arange(n_base, n_train+1, n_base)    
+    res_val = np.zeros((len(k_list),M))
+    res_test = np.zeros((len(k_list),M))
+    
+    for j,k in enumerate(k_list):
+        res_val[j,:], res_test[j,:] = comp_empirical_risk(
+            X_train, Y_train, X_test, Y_test, 
+            p/k, lam, M, data_val=(X_val, Y_val), replace=replace, return_allM=True
+        )
+        
+    j_cv = np.argmin(res_val, axis=0)
+    k_cv = k_list[j_cv]
+    risk_cv = res_test[j_cv, np.arange(M)]
+    return risk_cv    
