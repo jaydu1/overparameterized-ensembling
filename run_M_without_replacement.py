@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from tqdm import tqdm
+from tqdm.contrib import tzip
 import matplotlib.pyplot as plt
 sns.set_theme()
 from compute_risk import *
@@ -49,7 +50,7 @@ def run(phi, lam, SNR):
     
     M_list = np.arange(1,100+1)
     phis_list = (n * phi) / (n / M_list)
-    for M, phi_s in enumerate(M_list):
+    for M, phi_s in tzip(M_list, phis_list):
         if lam==0. and phi_s==1.:
             continue
         for i in range(n_simu):
