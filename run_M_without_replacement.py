@@ -34,7 +34,7 @@ def generate_data(n, phi, rho=1., sigma=1.):
 
     return beta0, X, Y, X_test, Y_test
 
-def run(phi, lam, SNR, replace):
+def run(phi, lam, SNR):
     n = 1000
 
     p = int(n*phi)
@@ -45,33 +45,31 @@ def run(phi, lam, SNR, replace):
     M = 100
     
     res = []
-    phi_s_list = np.logspace(-1,1, 50)
-    phi_s_list[np.where(phi_s_list>=phi)[0][0]] = phi
-    for phi_s in tqdm(phi_s_list):
-        if phi_s<phi or (lam==0. and phi_s==1.):
-            continue
-            
+    if phi_s<phi or (lam==0. and phi_s==1.):
+        continue
+    
+    M_list = np.arange(1,100+1)
+    phis_list = (n * phi) / (n / M_list)
+    for M, phi_s in enumerate(M_list):
         for i in range(n_simu):
             np.random.seed(i)
             beta0, X, Y, X_test, Y_test = generate_data(n, phi, rho, sigma)
 
             risk_emp = comp_empirical_risk(X, Y, X_test, Y_test, phi_s, lam, 
-                                           M=M, replace=replace, return_allM=True)
-            res.append(np.append([phi_s, i], risk_emp))
+                                           M=M, replace=False, return_allM=False)
+            res.append([phi_s, M, i, risk_emp])
 
-    res = pd.DataFrame(res, columns=np.append(['phi_s', 'seed'], np.arange(1,M+1)))
-    str_rel = 'with' if replace else 'without'
-    res.to_csv(path_result+'res_phi_{:.01f}_lam_{:.01f}_SNR_{:.01f}_{}_replacement.csv'.format(
-        phi, lam, SNR, str_rel))
+    res = pd.DataFrame(res, columns=['phi_s', 'M', 'seed', 'risk_emp'])
+    res.to_csv(path_result+'res_phi_{:.01f}_lam_{:.01f}_SNR_{:.01f}_without_replacement.csv'.format(
+        phi, lam, SNR))
 
 lam_list = np.linspace(0.,1.,11)#np.append(0, np.logspace(-9, 0, 10))
 
 for lam in [lam_list[int(sys.argv[1])]]:
     for phi in [0.1, 1.5]:
         for SNR in [1., 2., 3, 4.]:
-            for replace in [True, False]:
     #             if os.path.exists(
     #                 path_result+'res_phi_{:.01f}_lam_{:.01f}_SNR_{:.01f}.csv'.format(phi, lam, SNR)):
     #                 continue
-                print(phi, lam, SNR, replace)
-                run(phi, lam, SNR, replace)
+            print(phi, lam, SNR)
+            run(phi, lam, SNR)
