@@ -54,6 +54,19 @@ def vv_phi_lam(phi, lam, a=1, v=None):
             1/v**2 - phi/(1/a+v)**2)
     
     
+def tv_phi_lam(phi, phi_s, lam, v=None):
+    if lam==0:
+        if phi>1:
+            return phi/(phi_s^2 - phi)
+        else:
+            return np.inf
+    else:
+        if v is None:
+            v = v_phi_lam(phi_s,lam)
+        tmp = phi/(1+v)**2
+        return tmp/(1/v**2 - tmp)
+    
+    
 
 def vb_lam_phis_phi(lam, phi_s, phi, v=None):    
     if lam==0 and phi_s<=1:

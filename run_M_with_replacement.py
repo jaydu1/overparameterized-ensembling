@@ -66,10 +66,10 @@ def run(phi, lam, SNR):
 lam_list = np.linspace(0.,1.,11)#np.append(0, np.logspace(-9, 0, 10))
 
 for lam in [lam_list[int(sys.argv[1])]]:
-    for phi in [0.1, 1.5]:
+    for phi in [1.1]:
         for SNR in [1., 2., 3, 4.]:
-    #             if os.path.exists(
-    #                 path_result+'res_phi_{:.01f}_lam_{:.01f}_SNR_{:.01f}.csv'.format(phi, lam, SNR)):
-    #                 continue
+#             if os.path.exists(
+#                 path_result+'res_phi_{:.01f}_lam_{:.01f}_SNR_{:.01f}_with_replacement.csv'.format(phi, lam, SNR)):
+#                 continue
             print(phi, lam, SNR)
             run(phi, lam, SNR)

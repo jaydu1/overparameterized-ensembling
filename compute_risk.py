@@ -1,8 +1,8 @@
 import numpy as np
 from sklearn.linear_model import Ridge
 from fixed_point_sol import *
-
-
+import scipy as sp
+from joblib import Parallel, delayed
 
 def comp_theoretic_risk_M1(rho, sigma, lam, phi_s):
     if lam==0.:
@@ -46,26 +46,34 @@ def comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M, replace=True):
 
         else:
             v = v_phi_lam(phi_s,lam)
+            vb = vb_lam_phis_phi(lam,phi_s,phi, v=v)
             B0 = 0.5 * rho**2 * (
                 (1 + vb_phi_lam(phi_s,lam)) / (1 + v)**2 +
-                vb_lam_phis_phi(lam,phi_s,phi, v=v) / (1 + v)**2
+                 vb / (1 + v)**2
             )
 
             V0 = 0.5* sigma**2 * (
-                phi_s * vv_phi_lam(phi_s,lam, v=v) / (1 + v)**2 +
-                vv_lam_phis_phi(lam,phi_s,phi, v=v)/(1 + v)**2
+                phi_s * vv_phi_lam(phi_s,lam, v=v) / (1 + v)**2 +                
+                (vb - 1)
             )
         return B0, V0, sigma**2+B0+V0
     elif replace and M>2:
-        r1 = comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M=1)[-1]
-        r2 = comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M=2)[-1]
-        b = 2 * (r1 - r2)
-
-        a = r1 - b
+        B1, V1, r1 = comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M=1)
+        B2, V2, r2 = comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M=2)
+        
+        def decomp(x, y):
+            b = 2 * (x - y)
+            a = x - b
+            return a, b
+        
+        Ba, Bb = decomp(B1, B2)
+        Va, Vb = decomp(V1, V2)
+        a, b = decomp(r1, r2)
+        
         if M==np.inf:
-            return None, None, a
+            return Ba, Va, a
         else:
-            return None, None, a + b / M
+            return Ba + Bb / M, Va + Vb / M, a + b / M
     else:
         B1, V1, _ = comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M=1)
         
@@ -136,13 +144,14 @@ def comp_true_empirical_risk(X, Y, phi_s, lam, rho, sigma, beta0, M, replace=Tru
     return B0 + V0 + sigma**2
 
 
+
 def fit_predict(X, Y, X_test, lam):
-    if lam==0:        
-        beta = np.linalg.pinv(X.T @ X, hermitian=True) @ (X.T @ Y)
+    if lam==0:
+        beta = sp.linalg.lstsq(X, Y, check_finite=False, lapack_driver='gelsy')[0]
         Y_hat = X_test @ beta
         assert len(Y_hat.shape)==2
     else:
-        clf = Ridge(alpha=lam, fit_intercept=False, solver='svd')
+        clf = Ridge(alpha=lam, fit_intercept=False, solver='lsqr')
         clf.fit(X, Y)
         Y_hat = clf.predict(X_test)
     return Y_hat
@@ -168,9 +177,18 @@ def comp_empirical_risk(X, Y, X_test, Y_test,
         k = np.floor(n/M)
         assert 1 <= k <= n
         ids_list = np.array_split(np.random.permutation(np.arange(n)), M)
-    for j in range(M):
-        ids = ids_list[j]
-        Y_hat[:,j:j+1] = fit_predict(X[ids,:]/np.sqrt(len(ids)), Y[ids,:]/np.sqrt(len(ids)), X_eval, lam)
+        
+    with Parallel(n_jobs=8, verbose=0) as parallel:
+        res = parallel(
+            delayed(fit_predict)(
+                X[ids,:]/np.sqrt(len(ids)), 
+                Y[ids,:]/np.sqrt(len(ids)), X_eval, lam)
+            for ids in ids_list
+        )
+    Y_hat = np.concatenate(res, axis=-1)
+#     for j in range(M):
+#         ids = ids_list[j]
+#         Y_hat[:,j:j+1] = fit_predict(X[ids,:]/np.sqrt(len(ids)), Y[ids,:]/np.sqrt(len(ids)), X_eval, lam)
         
     if return_allM:
         Y_hat = np.cumsum(Y_hat, axis=1) / np.arange(1,M+1)
@@ -193,6 +211,7 @@ def cross_validation(X, Y, X_test, Y_test, lam, M, nu=0.6, replace=True):
     n, p = X.shape
     n_val = int(2 * np.sqrt(n))
     n_train = n - n_val
+#     p = int(p * n_train / n)
     n_base = int(n_train**nu)
     
     ids_val = np.sort(np.random.choice(n,n_val,replace=False))
@@ -200,17 +219,31 @@ def cross_validation(X, Y, X_test, Y_test, lam, M, nu=0.6, replace=True):
     X_val, Y_val = X[ids_val,:], Y[ids_val,:]
     X_train, Y_train = X[ids_train,:], Y[ids_train,:]
     
-    k_list = np.arange(n_base, n_train+1, n_base)    
-    res_val = np.zeros((len(k_list),M))
-    res_test = np.zeros((len(k_list),M))
+    if replace:
+        k_list = np.arange(n_base, n_train+1, n_base)
+        if n_train!=k_list[-1]:
+            k_list = np.append(k_list, n_train)
+    else:
+        k_list = n_train / np.arange(1,M+1)
+        k_list = k_list[k_list>=n_base]
+    
+    res_val = np.full((len(k_list),M), np.inf)
+    res_test = np.full((len(k_list),M), np.inf)
     
     for j,k in enumerate(k_list):
-        res_val[j,:], res_test[j,:] = comp_empirical_risk(
-            X_train, Y_train, X_test, Y_test, 
-            p/k, lam, M, data_val=(X_val, Y_val), replace=replace, return_allM=True
-        )
-        
+        if replace:
+            res_val[j,:], res_test[j,:] = comp_empirical_risk(
+                X_train, Y_train, X_test, Y_test, 
+                p/k, lam, M, data_val=(X_val, Y_val), replace=replace, return_allM=True
+            )
+        else:
+            m = j + 1
+            res_val[j,:m], res_test[j,:m] = comp_empirical_risk(
+                X_train, Y_train, X_test, Y_test, 
+                p/k, lam, m, data_val=(X_val, Y_val), replace=replace, return_allM=True
+            )
     j_cv = np.argmin(res_val, axis=0)
     k_cv = k_list[j_cv]
     risk_cv = res_test[j_cv, np.arange(M)]
-    return risk_cv    
+
+    return risk_cv
