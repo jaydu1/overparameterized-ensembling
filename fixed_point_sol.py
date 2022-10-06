@@ -17,10 +17,11 @@ def v_phi_lam(phi, lam, a=1):
     '''
     assert a>0
     
-    if phi<=0. or lam<0.:
-        raise ValueError("The input parameters should satisfy phi>0 and lam>=0.")
-
-    if lam>0.:
+    min_lam = -(1 - np.sqrt(phi))**2 * a
+    if phi<=0. or lam<min_lam:
+        raise ValueError("The input parameters should satisfy phi>0 and lam>=min_lam.")
+        
+    if lam!=0:
         return (-(phi+lam/a-1)+np.sqrt((phi+lam/a-1)**2+4*lam/a))/(2*lam)
     elif phi<=1.:
         raise ValueError("v is undefined for 0<phi<=1 and lam=0.")
@@ -59,12 +60,24 @@ def tv_phi_lam(phi, phi_s, lam, v=None):
         if phi>1:
             return phi/(phi_s^2 - phi)
         else:
-            return np.inf
+            return phi_s/(1 - phi_s)
     else:
         if v is None:
             v = v_phi_lam(phi_s,lam)
         tmp = phi/(1+v)**2
         return tmp/(1/v**2 - tmp)
+    
+
+def tc_phi_lam(phi_s, lam, v=None):
+    if lam==0:
+        if phi_s>1:
+            return (phi_s - 1)**2/phi_s**2
+        else:
+            return 0
+    else:
+        if v is None:
+            v = v_phi_lam(phi_s,lam)
+        return 1/(1+v)**2
     
     
 
@@ -87,58 +100,68 @@ def vv_lam_phis_phi(lam, phi_s, phi, v=None):
         return phi/(
             1/v**2 - phi/(1+v)**2)
 
+
     
-def v_phi_lam_extend(phi, lam, a=1, 
-                     c=None, C=None):
-    if c is None and C is None:
-        warnings.warn('Setting C be to zero matrix.')
-        return v_phi_lam(phi, lam, a)
-    elif c is not None and c>=0.:
-        return v_phi_lam(phi, lam, a/(1+c))
-    elif C is not None:
-        p = C.shape[0]    
-        v0 = v_phi_lam(phi, lam, a)
+def v_general(phi, lam, Sigma=None, v0=None):
+    if Sigma is None:
+        return v_phi_lam(phi, lam)
+    else:
+        p = Sigma.shape[0]
+        
+        if phi==np.inf:
+            return 0
+        elif lam==0 and phi<=1:
+            return np.inf        
+        
+        if v0 is None:
+            v0 = v_phi_lam(phi, lam)
+            
         v = v0
         eps = 1.
+        n_iter = 0
         while eps>1e-3:
-            v = 1/(lam + phi * a * np.trace(np.linalg.inv((a*v +1)*np.identity(p)+ C)) / p)
-            eps = np.abs(v-v0)
+            if n_iter>1e4:
+                if eps>1e-2: 
+                    warnings.warn("Not converge within 1e4 steps.")
+                break
+            v = 1/(lam + phi * np.trace(np.linalg.solve(np.identity(p) + v * Sigma, Sigma)) / p)
+            eps = np.abs(v-v0)/(np.abs(v0)+1e-3)
             v0 = v
+            n_iter += 1
         return v
-    else:
-        raise ValueError("Invalid input.")
-            
-def vb_phi_lam_extend(phi, lam, a=1, c=None, C=None, v=None):
-    if c is None and C is None:
-        warnings.warn('Setting C be to zero matrix.')
-        return vb_phi_lam(phi, lam, a, v=v)
-    elif c is not None and c>=0.:
-        return vb_phi_lam(phi, lam, a/(1+c), v=v)
-    elif C is not None:
-        v = v_phi_lam_extend(phi, lam, a, C=C)
-        p = C.shape[0]
-        tmp = phi * a**2 * np.trace(
-                np.linalg.matrix_power(
-                np.linalg.inv((a*v +1)*np.identity(p)+ C)) / p, 2
-        )
-        tvb = tmp/(1/v**2 - tmp)
-        return v
-    else:
-        raise ValueError("Invalid input.")
 
-def vv_phi_lam_extend(phi, lam, a=1, c=None, C=None, v=None):
-    if c is None and C is None:
-        warnings.warn('Setting C be to zero matrix.')
-        return vv_phi_lam(phi, lam, a, v=v)
-    elif c is not None and c>=0.:
-        return vv_phi_lam(phi, lam, a/(1+c), v=v)
-    elif C is not None:
-        if v is None:
-            v = v_phi_lam_extend(phi, lam, a, C=C)
-        p = C.shape[0]
-        tvv = 1/(1/v**2 - phi * a**2 * np.trace(
-                np.linalg.matrix_power(
-                np.linalg.inv((a*v +1)*np.identity(p)+ C), 2)) / p)
-        return tvv
+
+def tv_general(phi, phi_s, lam, Sigma=None, v=None):
+    if lam==0 and phi_s<1:
+        return phi/(1 - phi)
+    if Sigma is None:
+        return tv_phi_lam(phi, phi_s, lam, v)
     else:
-        raise ValueError("Invalid input.")
+        if v is None:
+            v = v_general(phi_s, lam, Sigma)
+        if v==np.inf:
+            return phi/(1-phi)
+        
+        p = Sigma.shape[0]
+        tmp = phi * np.trace(
+                np.linalg.matrix_power(
+                np.linalg.solve(np.identity(p) + v * Sigma, Sigma), 2)
+        ) / p
+        tv = tmp/(1/v**2 - tmp)
+        return tv
+
+
+def tc_general(phi_s, lam, Sigma=None, beta=None, v=None):
+    if lam==0 and phi_s<1:
+        return 0
+    if Sigma is None:
+        return tc_phi_lam(phi_s, lam, v)
+    else:
+        if v is None:
+            v = v_general(phi_s, lam, Sigma)
+        if v==np.inf:
+            return 0.
+        p = Sigma.shape[0]
+        tmp = np.linalg.solve(np.identity(p) + v * Sigma, beta[:,None])
+        tc = np.trace(tmp.T @ Sigma @ tmp)
+        return tc

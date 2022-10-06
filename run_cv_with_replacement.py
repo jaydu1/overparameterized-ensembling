@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 sns.set_theme()
 from compute_risk import *
 
-path_result = 'result/ex3/'
+path_result = 'result/ex4/'
 os.makedirs(path_result, exist_ok=True)
 
 def generate_data(n, phi, rho=1., sigma=1.):
@@ -44,25 +44,26 @@ def run_one_simulation(n, phi, rho, sigma, lam, M, i):
 
 lam_list = np.linspace(0.,1.,11)#np.append(0, np.logspace(-9, 0, 10))
 
-M = 20
+M = 50
 n = 1000
 n_simu = 100
-rho = 1.
+sigma = 1.
 from joblib import Parallel, delayed
 
 with Parallel(n_jobs=8, verbose=0, timeout=99999) as parallel:
     for lam in [lam_list[int(sys.argv[1])]]:
-        for SNR in [1.,2.,3.,4.]:
+        for SNR in [4.,0.5,2.,3.]:
 #             if os.path.exists(
 #                 path_result+'res_phi_{:.01f}_lam_{:.01f}_SNR_{:.01f}.csv'.format(phi, lam, SNR)):
 #                 continue
             
             df_res = pd.DataFrame()
             for phi in tqdm(np.logspace(-1, 1, 50), desc = 'phi'):
-                sigma = rho / np.sqrt(SNR)
+#                 sigma = rho / np.sqrt(SNR)
+                rho = sigma * np.sqrt(SNR)
                 res = parallel(
                     delayed(run_one_simulation)(n, phi, rho, sigma, lam, M, i) for i in tqdm(range(n_simu))
                 )
                 res = pd.DataFrame(np.r_[res], columns=np.append(['phi', 'seed'], np.arange(1,M+1)))
                 df_res = pd.concat([df_res, res],axis=0)
-                df_res.to_csv(path_result+'res_cv_lam_{:.01f}_SNR_{:.01f}.csv'.format(lam, SNR))
+                df_res.to_csv(path_result+'res_cv_lam_{:.01f}_sigma_1_SNR_{:.01f}.csv'.format(lam, SNR))

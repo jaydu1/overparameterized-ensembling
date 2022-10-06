@@ -4,6 +4,13 @@ from fixed_point_sol import *
 import scipy as sp
 from joblib import Parallel, delayed
 
+
+############################################################################
+#
+# Theoretical evaluation
+#
+############################################################################
+
 def comp_theoretic_risk_M1(rho, sigma, lam, phi_s):
     if lam==0.:
         if phi_s<1:
@@ -26,7 +33,7 @@ def comp_theoretic_risk_M1(rho, sigma, lam, phi_s):
 
 def comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M, replace=True):
     if phi_s == np.inf:
-        return rho**2, sigma**2, rho**2 + sigma**2
+        return rho**2, 0., rho**2 + sigma**2
     if M==1:
         return comp_theoretic_risk_M1(rho, sigma, lam, phi_s)
     elif replace and M==2:
@@ -87,6 +94,37 @@ def comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M, replace=True):
         return BM, VM, sigma**2 + BM + VM
 
 
+
+def comp_theoretic_risk_general(Sigma, beta0, sigma2, lam, phi, phi_s, M, replace=True):
+    if phi_s == np.inf:
+        rho2 = beta0.T @ Sigma @ beta0
+        return rho2, 0, rho2 + sigma2
+    else:
+        v = v_general(phi_s, lam, Sigma)
+        tc = tc_general(phi_s, lam, Sigma, beta0, v)
+        
+        if M!=1:            
+            tv = tv_general(phi, phi_s, lam, Sigma, v) if replace else 0
+        else:
+            tv = 0
+        if M!=np.inf:
+            tv_s = tv_general(phi_s, phi_s, lam, Sigma, v)
+        else:
+            tv_s = 0
+            
+        B = ((1 + tv_s) / M + (1 - 1/M) * (1 + tv)) * tc
+        V = (tv_s / M + (1 - 1/M) * tv) * sigma2
+        
+        return B, V, B+V+sigma2  
+    
+    
+    
+############################################################################
+#
+# Empirical evaluation
+#
+############################################################################
+    
 def compute_cov(Xs, lam):
     n,p = Xs.shape
     Sigma = Xs.T @ Xs / n
@@ -211,7 +249,6 @@ def cross_validation(X, Y, X_test, Y_test, lam, M, nu=0.6, replace=True):
     n, p = X.shape
     n_val = int(2 * np.sqrt(n))
     n_train = n - n_val
-#     p = int(p * n_train / n)
     n_base = int(n_train**nu)
     
     ids_val = np.sort(np.random.choice(n,n_val,replace=False))
@@ -227,8 +264,8 @@ def cross_validation(X, Y, X_test, Y_test, lam, M, nu=0.6, replace=True):
         k_list = n_train / np.arange(1,M+1)
         k_list = k_list[k_list>=n_base]
     
-    res_val = np.full((len(k_list),M), np.inf)
-    res_test = np.full((len(k_list),M), np.inf)
+    res_val = np.full((len(k_list)+1,M), np.inf)
+    res_test = np.full((len(k_list)+1,M), np.inf)
     
     for j,k in enumerate(k_list):
         if replace:
@@ -242,8 +279,12 @@ def cross_validation(X, Y, X_test, Y_test, lam, M, nu=0.6, replace=True):
                 X_train, Y_train, X_test, Y_test, 
                 p/k, lam, m, data_val=(X_val, Y_val), replace=replace, return_allM=True
             )
+            
+    # null predictor
+    res_val[-1,:], res_test[-1,:] = np.mean(Y_val**2), np.mean(Y_test**2)
+    
     j_cv = np.argmin(res_val, axis=0)
-    k_cv = k_list[j_cv]
+#     k_cv = k_list[j_cv]
     risk_cv = res_test[j_cv, np.arange(M)]
 
     return risk_cv
