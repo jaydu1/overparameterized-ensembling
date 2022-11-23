@@ -32,82 +32,42 @@ def comp_theoretic_risk_M1(rho, sigma, lam, phi_s):
 
 
 def comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M, replace=True):
+    sigma2 = sigma**2
     if phi_s == np.inf:
-        return rho**2, 0., rho**2 + sigma**2
-    if M==1:
-        return comp_theoretic_risk_M1(rho, sigma, lam, phi_s)
-    elif replace and M==2:
-
-        phi_0 = phi_s**2 /phi
-
-        if lam==0 and phi_s<=1:
-            if phi_s<1:
-                B0 = 0.
-                V0 = 0.5 * sigma**2 * (
-                    phi_s / (1-phi_s) + 
-                    phi / (1 - phi)
-                )
-            elif phi_s==1:
-                B0 = 0.
-                V0 = 0. if sigma==0 else np.inf
-
-        else:
-            v = v_phi_lam(phi_s,lam)
-            vb = vb_lam_phis_phi(lam,phi_s,phi, v=v)
-            B0 = 0.5 * rho**2 * (
-                (1 + vb_phi_lam(phi_s,lam)) / (1 + v)**2 +
-                 vb / (1 + v)**2
-            )
-
-            V0 = 0.5* sigma**2 * (
-                phi_s * vv_phi_lam(phi_s,lam, v=v) / (1 + v)**2 +                
-                (vb - 1)
-            )
-        return B0, V0, sigma**2+B0+V0
-    elif replace and M>2:
-        B1, V1, r1 = comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M=1)
-        B2, V2, r2 = comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M=2)
-        
-        def decomp(x, y):
-            b = 2 * (x - y)
-            a = x - b
-            return a, b
-        
-        Ba, Bb = decomp(B1, B2)
-        Va, Vb = decomp(V1, V2)
-        a, b = decomp(r1, r2)
-        
-        if M==np.inf:
-            return Ba, Va, a
-        else:
-            return Ba + Bb / M, Va + Vb / M, a + b / M
+        return rho**2, 0., rho**2 + sigma2
     else:
-        B1, V1, _ = comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M=1)
+        v = v_phi_lam(phi_s,lam)
+        tc = rho**2 * tc_phi_lam(phi_s, lam, v)
         
-        # M is finite
-        if lam==0 and phi_s<=1:
-            BM = 0
+        if np.any(M!=1):
+            tv = tv_phi_lam(phi, phi_s, lam, v) if replace else 0
         else:
-            C = rho**2 / (1 + v_phi_lam(phi_s,lam))**2
-            BM = B1 / M + (1 - 1/M) * C
-        VM = V1 / M
-        return BM, VM, sigma**2 + BM + VM
+            tv = 0
+        if np.any(M!=np.inf):
+            tv_s = tv_phi_lam(phi_s, phi_s, lam, v)
+        else:
+            tv_s = 0
+            
+        B = ((1 + tv_s) / M + (1 - 1/M) * (1 + tv)) * tc
+        V = (tv_s / M + (1 - 1/M) * tv) * sigma2
+        
+        return B, V, B+V+sigma2
 
 
 
 def comp_theoretic_risk_general(Sigma, beta0, sigma2, lam, phi, phi_s, M, replace=True):
     if phi_s == np.inf:
-        rho2 = beta0.T @ Sigma @ beta0
+        rho2 = beta0.T @ Sigma @ beta0 #(1-rho_ar1**2)/(1-rho_ar1)**2/5
         return rho2, 0, rho2 + sigma2
     else:
         v = v_general(phi_s, lam, Sigma)
         tc = tc_general(phi_s, lam, Sigma, beta0, v)
         
-        if M!=1:            
+        if np.any(M!=1):
             tv = tv_general(phi, phi_s, lam, Sigma, v) if replace else 0
         else:
             tv = 0
-        if M!=np.inf:
+        if np.any(M!=np.inf):
             tv_s = tv_general(phi_s, phi_s, lam, Sigma, v)
         else:
             tv_s = 0
@@ -115,7 +75,7 @@ def comp_theoretic_risk_general(Sigma, beta0, sigma2, lam, phi, phi_s, M, replac
         B = ((1 + tv_s) / M + (1 - 1/M) * (1 + tv)) * tc
         V = (tv_s / M + (1 - 1/M) * tv) * sigma2
         
-        return B, V, B+V+sigma2  
+        return B, V, B+V+sigma2
     
     
     
@@ -279,6 +239,8 @@ def cross_validation(X, Y, X_test, Y_test, lam, M, nu=0.6, replace=True):
                 X_train, Y_train, X_test, Y_test, 
                 p/k, lam, m, data_val=(X_val, Y_val), replace=replace, return_allM=True
             )
+            res_val[j,m:] = res_val[j,m-1]
+            res_test[j,m:] = res_test[j,m-1]
             
     # null predictor
     res_val[-1,:], res_test[-1,:] = np.mean(Y_val**2), np.mean(Y_test**2)
