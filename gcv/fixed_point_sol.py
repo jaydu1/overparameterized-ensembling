@@ -20,11 +20,13 @@ def v_phi_lam(phi, lam, a=1):
     min_lam = -(1 - np.sqrt(phi))**2 * a
     if phi<=0. or lam<min_lam:
         raise ValueError("The input parameters should satisfy phi>0 and lam>=min_lam.")
-        
-    if lam!=0:
+    
+    if phi==np.inf:
+        return 0
+    elif lam!=0:
         return (-(phi+lam/a-1)+np.sqrt((phi+lam/a-1)**2+4*lam/a))/(2*lam)
     elif phi<=1.:
-        raise ValueError("v is undefined for 0<phi<=1 and lam=0.")
+        return np.inf
     else:
         return 1/(a*(phi-1))
     
@@ -56,29 +58,28 @@ def vv_phi_lam(phi, lam, a=1, v=None):
     
     
 def tv_phi_lam(phi, phi_s, lam, v=None):
-    if lam==0:
-        if phi>1:
-            return phi/(phi_s^2 - phi)
-        else:
-            return phi_s/(1 - phi_s)
+    if v is None:
+        v = v_phi_lam(phi_s,lam)
+        
+    if v==np.inf:
+        return phi/(1-phi)
+    elif lam==0. and phi>1:
+        return phi/(phi_s**2 - phi)
     else:
-        if v is None:
-            v = v_phi_lam(phi_s,lam)
         tmp = phi/(1+v)**2
-        return tmp/(1/v**2 - tmp)
+        tv = tmp/(1/v**2 - tmp)
+        return tv
     
 
 def tc_phi_lam(phi_s, lam, v=None):
-    if lam==0:
-        if phi_s>1:
-            return (phi_s - 1)**2/phi_s**2
-        else:
-            return 0
+    if v is None:
+        v = v_phi_lam(phi_s,lam)
+    if v==np.inf:
+        return 0.
+    elif lam==0 and phi_s>1:
+        return (phi_s - 1)**2/phi_s**2
     else:
-        if v is None:
-            v = v_phi_lam(phi_s,lam)
         return 1/(1+v)**2
-    
     
 
 def vb_lam_phis_phi(lam, phi_s, phi, v=None):    
