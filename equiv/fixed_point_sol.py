@@ -132,7 +132,7 @@ def v_general(phi, lam, Sigma=None, v0=None):
         return v
 
 
-def tv_general(phi, phi_s, lam, Sigma=None, v=None):
+def tv_general(phi, phi_s, lam, Sigma=None, v=None, ATA=None):
     if lam==0 and phi_s<1:
         return phi/(1 - phi)
     if Sigma is None:
@@ -142,27 +142,51 @@ def tv_general(phi, phi_s, lam, Sigma=None, v=None):
             v = v_general(phi_s, lam, Sigma)
         if v==np.inf:
             return phi/(1-phi)
-        
+        if ATA is None:
+            ATA = Sigma
         p = Sigma.shape[0]
-        tmp = phi * np.trace(
-                np.linalg.matrix_power(
-                np.linalg.solve(np.identity(p) + v * Sigma, Sigma), 2)
+        tmp = phi * np.trace(            
+                np.linalg.solve(
+                    np.identity(p) + v * Sigma, 
+                    np.linalg.solve(np.identity(p) + v * Sigma, ATA @ Sigma)
+                )
         ) / p
         tv = tmp/(1/v**2 - tmp)
         return tv
 
 
-def tc_general(phi_s, lam, Sigma=None, beta=None, v=None):
+# def tc_general(phi_s, lam, Sigma=None, beta=None, v=None):
+#     if lam==0 and phi_s<1:
+#         return 0
+#     if Sigma is None:
+#         return tc_phi_lam(phi_s, lam, v)
+#     else:
+#         if v is None:
+#             v = v_general(phi_s, lam, Sigma)
+#         if v==np.inf:
+#             return 0.
+#         p = Sigma.shape[0]
+#         tmp = np.linalg.solve(np.identity(p) + v * Sigma, beta[:,None])
+#         tc = np.trace(tmp.T @ Sigma @ tmp)
+#         return tc
+    
+    
+def tc_general(phi, phi_s, lam, Sigma=None, beta=None, 
+               v=None, tv=None, ATA=None):
     if lam==0 and phi_s<1:
         return 0
     if Sigma is None:
         return tc_phi_lam(phi_s, lam, v)
     else:
         if v is None:
-            v = v_general(phi_s, lam, Sigma)
+            v = v_general(phi_s, lam, Sigma)            
         if v==np.inf:
             return 0.
+        if ATA is None:
+            ATA = Sigma
+        if tv is None:
+            tv = tv_general(phi, phi_s, lam, Sigma, v, ATA)
         p = Sigma.shape[0]
         tmp = np.linalg.solve(np.identity(p) + v * Sigma, beta[:,None])
-        tc = np.trace(tmp.T @ Sigma @ tmp)
+        tc = np.trace(tmp.T @ (tv * Sigma + ATA) @ tmp)
         return tc

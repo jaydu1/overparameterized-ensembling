@@ -23,40 +23,43 @@ warnings.filterwarnings('ignore')
 #
 ############################################################################
 
-def comp_theoretic_risk_M1(rho, sigma, lam, phi_s):
+def comp_theoretic_risk_M1(rho, sigma, lam, psi):
+    '''
+    Compute the theoretical risk for M=1.
+    '''
     if lam==0.:
-        if phi_s<1:
+        if psi<1:
             B0 = 0.
-            V0 = sigma**2 * phi_s / (1-phi_s)
-        elif phi_s==1:
+            V0 = sigma**2 * psi / (1-psi)
+        elif psi==1:
             B0 = 0.
             V0 = 0. if sigma==0 else np.inf
         else:
-            v = v_phi_lam(phi_s, lam)
-            B0 = rho**2 * (1 + vb_phi_lam(phi_s, lam, v=v)) / (1 + v)**2
-            V0 = sigma**2 * phi_s * vv_phi_lam(phi_s, lam, v=v) / (1 + v)**2
+            v = v_phi_lam(psi, lam)
+            B0 = rho**2 * (1 + vb_phi_lam(psi, lam, v=v)) / (1 + v)**2
+            V0 = sigma**2 * psi * vv_phi_lam(psi, lam, v=v) / (1 + v)**2
         
     else:
-        v = v_phi_lam(phi_s, lam)
-        B0 = rho**2 * (1 + vb_phi_lam(phi_s,lam,v=v)) / (1 + v)**2
-        V0 = sigma**2 * phi_s * vv_phi_lam(phi_s,lam,v=v) / (1+v)**2
+        v = v_phi_lam(psi, lam)
+        B0 = rho**2 * (1 + vb_phi_lam(psi,lam,v=v)) / (1 + v)**2
+        V0 = sigma**2 * psi * vv_phi_lam(psi,lam,v=v) / (1+v)**2
     return B0, V0, sigma**2+B0+V0
 
 
-def comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M, replace=True):
+def comp_theoretic_risk(rho, sigma, lam, phi, psi, M, replace=True):
     sigma2 = sigma**2
-    if phi_s == np.inf:
+    if psi == np.inf:
         return np.full_like(M, rho**2, dtype=np.float32), np.zeros_like(M), np.full_like(M, rho**2 + sigma2, dtype=np.float32)
     else:
-        v = v_phi_lam(phi_s,lam)
-        tc = rho**2 * tc_phi_lam(phi_s, lam, v)
+        v = v_phi_lam(psi,lam)
+        tc = rho**2 * tc_phi_lam(psi, lam, v)
         
         if np.any(M!=1):
-            tv = tv_phi_lam(phi, phi_s, lam, v) if replace else 0
+            tv = tv_phi_lam(phi, psi, lam, v) if replace else 0
         else:
             tv = 0
         if np.any(M!=np.inf):
-            tv_s = tv_phi_lam(phi_s, phi_s, lam, v)
+            tv_s = tv_phi_lam(psi, psi, lam, v)
         else:
             tv_s = 0
             
@@ -67,32 +70,67 @@ def comp_theoretic_risk(rho, sigma, lam, phi, phi_s, M, replace=True):
 
 
 
-def comp_theoretic_risk_general(Sigma, beta0, sigma2, lam, phi, phi_s, M, 
-                                replace=True, v=None, tc=None, tv=None, tv_s=None):
-    if phi_s == np.inf:
+# def comp_theoretic_risk_general(Sigma, beta0, sigma2, lam, phi, psi, M, 
+#                                 replace=True, v=None, tc=None, tv=None, tv_s=None):
+#     if psi == np.inf:
+#         rho2 = beta0.T @ Sigma @ beta0 #(1-rho_ar1**2)/(1-rho_ar1)**2/5
+#         return np.full_like(M, rho2, dtype=np.float32), np.zeros_like(M), np.full_like(M, rho2 + sigma2, dtype=np.float32)
+#     else:
+#         if v is None:
+#             v = v_general(psi, lam, Sigma)
+#         if tc is None:
+#             tc = tc_general(psi, lam, Sigma, beta0, v)
+        
+#         if np.any(M!=1):
+#             if tv is None:
+#                 tv = tv_general(phi, psi, lam, Sigma, v) if replace else 0
+#         else:
+#             tv = 0
+#         if np.any(M!=np.inf):
+#             if tv_s is None:
+#                 tv_s = tv_general(psi, psi, lam, Sigma, v)
+#         else:
+#             tv_s = 0
+            
+#         B = ((1 + tv_s) / M + (1 - 1/M) * (1 + tv)) * tc
+#         V = (tv_s / M + (1 - 1/M) * tv) * sigma2
+        
+#         return B, V, B+V+sigma2
+
+def comp_theoretic_risk_general(Sigma, beta0, sigma2, lam, phi, psi, M, 
+                                replace=True, v=None, 
+                                tc=None, tc_s=None, tv=None, tv_s=None, ATA=None):
+    if psi == np.inf:
         rho2 = beta0.T @ Sigma @ beta0 #(1-rho_ar1**2)/(1-rho_ar1)**2/5
         return np.full_like(M, rho2, dtype=np.float32), np.zeros_like(M), np.full_like(M, rho2 + sigma2, dtype=np.float32)
     else:
         if v is None:
-            v = v_general(phi_s, lam, Sigma)
-        if tc is None:
-            tc = tc_general(phi_s, lam, Sigma, beta0, v)
+            v = v_general(psi, lam, Sigma)
         
         if np.any(M!=1):
             if tv is None:
-                tv = tv_general(phi, phi_s, lam, Sigma, v) if replace else 0
+                tv = tv_general(phi, psi, lam, Sigma, v, ATA) if replace else 0
         else:
             tv = 0
+
         if np.any(M!=np.inf):
             if tv_s is None:
-                tv_s = tv_general(phi_s, phi_s, lam, Sigma, v)
+                tv_s = tv_general(psi, psi, lam, Sigma, v, ATA)
         else:
             tv_s = 0
-            
-        B = ((1 + tv_s) / M + (1 - 1/M) * (1 + tv)) * tc
+
+        if tc is None:
+            tc = tc_general(phi, psi, lam, Sigma, beta0, v, tv, ATA)
+        if tc_s is None:
+            tc_s = tc_general(psi, psi, lam, Sigma, beta0, v, tv_s, ATA)
+        
+        B = 1/M * tc_s + (1 - 1/M) * tc
         V = (tv_s / M + (1 - 1/M) * tv) * sigma2
         
         return B, V, B+V+sigma2
+
+
+
     
     
     
@@ -116,14 +154,14 @@ def compute_cov(Xs, lam):
 
     return Sigma, M/n, T1, T2/n
 
-def comp_true_empirical_risk(X, Y, phi_s, lam, rho, sigma, beta0, M, replace=True):
+def comp_true_empirical_risk(X, Y, psi, lam, rho, sigma, beta0, M, replace=True):
     n,p = X.shape
     phi = p/n  
     
     assert replace is False or M==2
     
     if replace:
-        k = int(p/phi_s)
+        k = int(p/psi)
         
         # randomly sample
         ids_list = [
@@ -211,7 +249,7 @@ def fit_predict(X, Y, X_test, method, param):
     return Y_hat
 
 
-def comp_empirical_risk(X, Y, X_test, Y_test, phi_s, method, param, 
+def comp_empirical_risk(X, Y, X_test, Y_test, psi, method, param, 
                         M=2, data_val=None, replace=True, 
                         return_allM=False, return_pred_diff=False):
     n,p = X.shape
@@ -226,7 +264,7 @@ def comp_empirical_risk(X, Y, X_test, Y_test, phi_s, method, param,
         X_eval = X_test
         
     if replace:
-        k = int(p/phi_s)
+        k = int(p/psi)
         ids_list = [np.sort(np.random.choice(n,k,replace=False)) for j in range(M)]
     else:
         k = np.floor(n/M)
@@ -273,11 +311,11 @@ def get_estimator(X, Y, lam):
     regressor.fit(X/sqrt_k, Y/sqrt_k)
     return regressor.coef_.T
     
-def comp_empirical_norm(X, Y, phi_s, beta0, method, param, M=2, replace=True):
+def comp_empirical_norm(X, Y, psi, beta0, method, param, M=2, replace=True):
     
     n,p = X.shape
     if replace:
-        k = int(p/phi_s)
+        k = int(p/psi)
         ids_list = [np.sort(np.random.choice(n,k,replace=False)) for j in range(M)]
     else:
         k = np.floor(n/M)
@@ -298,11 +336,11 @@ def comp_empirical_norm(X, Y, phi_s, beta0, method, param, M=2, replace=True):
     return np.sum(beta_hat**2), np.sum(beta_diff**2)
 
 
-def comp_empirical_beta_stat(X, Y, phi_s, method, param, a_gau, a_nongau, M=2, replace=True):
+def comp_empirical_beta_stat(X, Y, psi, method, param, a_gau, a_nongau, M=2, replace=True):
     
     n,p = X.shape
     if replace:
-        k = int(p/phi_s)
+        k = int(p/psi)
         ids_list = [np.sort(np.random.choice(n,k,replace=False)) for j in range(M)]
     else:
         k = np.floor(n/M)
@@ -336,13 +374,13 @@ def comp_empirical_beta_stat(X, Y, phi_s, method, param, a_gau, a_nongau, M=2, r
 
 
 def comp_empirical_generalized_risk(
-    X, Y, phi_s, method, param, 
+    X, Y, psi, method, param, 
     beta0=None, Sigma=None, Sigma_out=None, X_test=None, Y_test=None,
     M=2, replace=True):
     
     n,p = X.shape
     if replace:
-        k = int(p/phi_s)
+        k = int(p/psi)
         ids_list = [np.sort(np.random.choice(n,k,replace=False)) for j in range(M)]
     else:
         k = np.floor(n/M)
@@ -407,11 +445,11 @@ def get_tr(X, method, param):
     return tr
 
 
-def est_lam(X, phi_s, method, param, M=100, replace=True):
+def est_lam(X, psi, method, param, M=100, replace=True):
     
     n,p = X.shape
     if replace:
-        k = int(p/phi_s)
+        k = int(p/psi)
         ids_list = [np.sort(np.random.choice(n,k,replace=False)) for j in range(M)]
     else:
         k = np.floor(n/M)
