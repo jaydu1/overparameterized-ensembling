@@ -1,3 +1,6 @@
 [submodule "cgcv"]
 	path = cgcv
 	url = https://github.com/kaitan365/CorrectedGCV
+[submodule "ecv"]
+	path = ecv
+	url = https://github.com/jaydu1/ECV
