@@ -1,0 +1,36 @@
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        {% include head/full.html %}
+    </head>
+
+    {% assign scrollSpyOffset = page.scrollSpyOffset | default: layout.scrollSpyOffset | default: 0 %}
+    <body
+        class="layout-{{ page.layout }}"
+        data-spy="scroll"
+        data-target="#page-toc"
+        data-offset="{{ scrollSpyOffset }}"
+    >
+        {% include navigation.html %}
+        {% include masthead.html %}
+
+        {{ content }}
+
+        {% include footer/full.html %}
+    </body>
+</html>
