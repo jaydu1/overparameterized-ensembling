@@ -2,7 +2,7 @@
 layout: page
 disable_anchors: false
 title: "sklearn_ensemble_cv"
-permalink: /sklearn_ensemble_cv/
+permalink: /sklearn-ensemble-cv/
 ---
 
 # ensemble-cross-validation
