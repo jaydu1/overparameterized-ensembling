@@ -15,7 +15,7 @@ This paper studies subsampling-based ridge ensembles in the proportional asympto
 
 
 # Code
-The code for reproducing results of this paper is available at [Github](https://github.com/jaydu1/overparameterized-bagging/tree/main/paper/gcv).
+The code for reproducing results of this paper is available at [Github](https://github.com/jaydu1/overparameterized-ensembling/tree/main/paper/gcv).
 
 
 ## Scripts

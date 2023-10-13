@@ -12,5 +12,5 @@ Bagging is a commonly used ensemble technique in statistics and machine learning
 
 # Code
 
-The code for reproducing results of this paper is available at [Github](https://github.com/jaydu1/overparameterized-bagging/tree/main/paper/bagging).
+The code for reproducing results of this paper is available at [Github](https://github.com/jaydu1/overparameterized-ensembling/tree/main/paper/bagging).
 

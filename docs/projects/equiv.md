@@ -14,7 +14,7 @@ We establish precise structural and risk equivalences between subsampling and ri
 
 # Code
 
-The code for reproducing results of this paper is available at [Github](https://github.com/jaydu1/overparameterized-bagging/tree/main/paper/equiv).
+The code for reproducing results of this paper is available at [Github](https://github.com/jaydu1/overparameterized-ensembling/tree/main/paper/equiv).
 
 ## Scripts
 
