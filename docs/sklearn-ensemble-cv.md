@@ -5,7 +5,7 @@ title: "sklearn_ensemble_cv"
 permalink: /sklearn-ensemble-cv/
 ---
 
-# ensemble-cross-validation
+# Ensemble-cross-validation
 
 
 `sklearn_ensemble_cv` is a Python module ([[Github]](https://github.com/jaydu1/ensemble-cross-validation/)) for performing accurate and efficient ensemble cross-validation methods from various [projects](https://jaydu1.github.io/overparameterized-ensembling/).
