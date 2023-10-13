@@ -1,0 +1,6 @@
+[submodule "paper/ecv"]
+	path = paper/ecv
+	url = https://github.com/jaydu1/ECV
+[submodule "paper/cgcv"]
+	path = paper/cgcv
+	url = https://github.com/kaitan365/CorrectedGCV/
