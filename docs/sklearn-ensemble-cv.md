@@ -22,8 +22,8 @@ permalink: /sklearn-ensemble-cv/
 
 This project is currently in development. More CV methods will be added shortly.
 
-- [ ] split CV
-- [ ] K-fold CV
+- [x] split CV
+- [x] K-fold CV
 - [x] ECV
 - [ ] GCV
 - [ ] CGCV
