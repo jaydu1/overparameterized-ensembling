@@ -17,6 +17,25 @@ permalink: /sklearn-ensemble-cv/
 - The module also includes utilities for evaluating the performance of the ensembles and the individual models that make up the ensembles.
 
 
+```python
+from sklearn.tree import DecisionTreeRegressor
+from sklearn_ensemble_cv import ECV
+
+# Hyperparameters for the base regressor
+grid_regr = {    
+    'max_depth':np.array([6,7], dtype=int), 
+    }
+# Hyperparameters for the ensemble
+grid_ensemble = {
+    'max_features':np.array([0.9,1.]),
+    'max_samples':np.array([0.6,0.7]),
+}
+
+res_ecv, info_ecv = ECV(
+    X_train, y_train, DecisionTreeRegressor, grid_regr, grid_ensemble, 
+    M=50, M_max=100, return_df=True
+)
+```
 
 # Cross-validation methods
 
@@ -25,8 +44,8 @@ This project is currently in development. More CV methods will be added shortly.
 - [x] split CV
 - [x] K-fold CV
 - [x] ECV
-- [ ] GCV
-- [ ] CGCV
+- [x] GCV
+- [x] CGCV
 
 
 # Usage
