@@ -1,0 +1,785 @@
+---
+layout: page
+disable_anchors: false
+title: "sklearn_ensemble_cv"
+permalink: /sklearn-ensemble-cv/docs/utils.html
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.1" />
+<title>sklearn_ensemble_cv.utils API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>sklearn_ensemble_cv.utils</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import os
+import random
+import numpy as np
+import pandas as pd
+from itertools import product
+
+
+def reset_random_seeds(seed):
+    os.environ[&#39;PYTHONHASHSEED&#39;]=str(seed)
+    random.seed(seed)
+    np.random.seed(seed)
+
+
+
+def median_of_means(x, eta=None):
+    &#39;&#39;&#39;
+    Compute the median of means of the given data.
+
+    Parameters
+    ----------
+    x : 1d-array
+        The data.
+    eta : float
+        The parameter for the median of means. If None, it is set to 1/n.
+
+    Returns
+    -------
+    mom : float
+        The median of means.
+    &#39;&#39;&#39;
+    n = len(x)
+    if eta is None:
+        eta = 1/n
+    B = int(np.maximum(
+            np.minimum(np.ceil(8 * np.log(1/eta)), n), 1))
+    ids = np.random.permutation(np.arange(n))
+    ids_list = np.array_split(ids, B)
+    mom = np.median([np.mean(x[ids]) for ids in ids_list])
+    return mom
+
+
+def risk_estimate(sq_err, axis=None, method=&#39;AVG&#39;, **kwargs):
+    &#39;&#39;&#39;
+    Compute the risk estimate from the squared error.
+
+    Parameters
+    ----------
+    sq_err : 1d-array
+        The squared error.
+    method : str
+        The method to use for risk estimation. Either &#39;AVG&#39; or &#39;MOM&#39;.
+    kwargs : dict
+        Additional keyword arguments for the risk estimation method.
+    &#39;&#39;&#39;
+
+    if len(sq_err)&lt;1:
+        return np.nan
+    
+    if method==&#39;AVG&#39;:
+        risk = np.mean(sq_err, axis=axis)        
+    else:
+        risk = np.apply_along_axis(median_of_means, axis, sq_err, **kwargs)
+    return risk
+
+
+def degree_of_freedom(regr, X):
+    &#39;&#39;&#39;
+    Compute the degree of freedom of a fitted regressor.
+    
+    Parameters
+    ----------
+    regr : sklearn regressor
+        The fitted regressor. Can be Ridge, Lasso, or ElasticNet.
+    X : 2d-array
+        The input data.
+
+    Returns
+    -------
+    dof : float
+        The degree of freedom.
+    &#39;&#39;&#39;
+    k = X.shape[0]
+    if regr.fit_intercept:
+        X = np.c_[np.ones((k,1)), X]
+        nz_coef = np.r_[regr.intercept_!=0, regr.coef_!=0]
+    else:
+        nz_coef = regr.coef_!=0
+    
+    lam = regr.alpha
+    method = regr.__class__.__name__
+
+    if method == &#39;Ridge&#39;:
+        svds = np.linalg.svd(X, compute_uv=False)
+        evds = svds[:k]**2
+        dof = np.sum(evds/(evds + lam))
+
+    elif method == &#39;Lasso&#39;:
+        dof = np.sum(nz_coef)
+            
+    elif method==&#39;ElasticNet&#39;:
+        l1_ratio = regr.l1_ratio
+        lam_2 = lam * (1-l1_ratio)
+
+        if np.any(nz_coef):
+            svds = np.linalg.svd(X[:,nz_coef], compute_uv=False)
+        else:
+            svds = np.array([0.])
+        evds = svds[:k]**2
+        dof = np.sum(evds/(evds + k * lam_2))
+
+    return dof
+
+
+def estimate_null_risk(Y):
+    &#39;&#39;&#39;
+    Estimate the null risk of the data for regression problems.
+    &#39;&#39;&#39;
+    mu = 0.
+    return np.mean((Y-mu)**2)
+
+
+
+
+####################################################################################################
+#
+# Grid processing functions
+#
+####################################################################################################
+
+def split_grid(raw_grid, raw_kwarg):
+    &#39;&#39;&#39;
+    Split the grid and kwarg into two dictionaries.
+
+    Parameters
+    ----------
+    raw_grid : dict
+        A dictionary of lists of parameters, possibly with fixed parameters.
+    raw_kwarg : dict
+        A dictionary of fixed parameters.
+    
+    Returns
+    -------
+    grid : dict
+        A dictionary of lists of parameters to tune.
+    kwarg : dict
+        A dictionary of fixed parameters.
+    &#39;&#39;&#39;
+
+    grid = {i:j for i,j in raw_grid.items() if not np.isscalar(j)}
+    kwarg = {i:j for i,j in raw_grid.items() if np.isscalar(j) or len(j)==1}
+
+    if raw_kwarg.keys() &amp; kwarg.keys():
+        raise ValueError(&#39;Grid and kwarg cannot have common keys.&#39;)
+    kwarg = {**kwarg, **raw_kwarg}
+    return grid, kwarg
+
+
+def make_grid(dict_regr, dict_ensemble=None):
+    &#39;&#39;&#39;
+    Create a dataframe with all combinations of parameters in dict_params.
+
+    Parameters
+    ----------
+    dict_regr : dict
+        A dictionary of parameter names and their possible values for the base regressor.
+    dict_ensemble : dict
+        A dictionary of parameter names and their possible values for the ensemble model.
+
+    Returns
+    -------
+    config_list_regr : list
+        A list of dictionaries, where each dictionary represents one configuration for the base regressor.
+    config_list_ensemble : list
+        A list of dictionaries, where each dictionary represents one configuration for the ensemble model.
+    &#39;&#39;&#39;    
+    # Get all combinations of parameter values
+    param_values = list(product(*(list(dict_regr.values())+list(dict_ensemble.values()))))
+
+    # Create a list of dictionaries, where each dictionary represents one configuration
+    config_list_regr = [dict(zip(dict_regr.keys(), values[:len(dict_regr)])) for values in param_values]
+    if dict_ensemble is not None:
+        config_list_ensemble = [dict(zip(dict_ensemble.keys(), values[len(dict_regr):])) for values in param_values]
+        return config_list_regr, config_list_ensemble
+    else:
+        return config_list_regr
+
+
+def process_grid(grid_regr, kwargs_regr, grid_ensemble, kwargs_ensemble, kwargs_est, M):
+    &#39;&#39;&#39;
+    Process the grid and kwarg into two dictionaries.
+
+    Parameters
+    ----------
+    grid_regr : dict
+        A dictionary of lists of parameters for the base regressor, possibly with fixed parameters.
+    kwargs_regr : dict
+        A dictionary of fixed parameters for the base regressor.
+    grid_ensemble : dict
+        A dictionary of lists of parameters for the ensemble model, possibly with fixed parameters.
+    kwargs_ensemble : dict
+        A dictionary of fixed parameters for the ensemble model.
+    kwargs_est : dict
+        Additional keyword arguments for the risk estimate.
+    M : int
+        The ensemble size.
+
+    Returns
+    -------
+    grid_regr : dict
+        A dictionary of lists of parameters to tune for the base regressor.
+    kwargs_regr : dict
+        A dictionary of fixed parameters for the base regressor.
+    grid_ensemble : dict
+        A dictionary of lists of parameters to tune for the ensemble model.
+    kwargs_ensemble : dict
+        A dictionary of fixed parameters for the ensemble model.
+    kwargs_est : dict
+        Additional keyword arguments for the risk estimate.    
+    &#39;&#39;&#39;
+    if not grid_regr and not grid_ensemble:
+        raise ValueError(&#39;grid_regr and grid_ensemble cannot both be empty.&#39;)
+    
+    if type(grid_regr) is not type(grid_ensemble):
+        raise ValueError(&#39;grid_regr and grid_ensemble must be of the same type.&#39;)
+    
+    if isinstance(grid_regr, dict):
+        grid_regr, kwargs_regr = split_grid(grid_regr, kwargs_regr)
+        grid_ensemble, kwargs_ensemble = split_grid(grid_ensemble, kwargs_ensemble)
+        grid_regr, grid_ensemble = make_grid(grid_regr, grid_ensemble)
+
+    kwargs_ensemble = {**{&#39;random_state&#39;:0}, **kwargs_ensemble}
+    kwargs_regr, kwargs_ensemble, kwargs_est = check_input(kwargs_regr, kwargs_ensemble, kwargs_est, M)
+    return grid_regr, kwargs_regr, grid_ensemble, kwargs_ensemble, kwargs_est
+
+
+
+def check_input(kwargs_regr, kwargs_ensemble, kwargs_est, M):
+    &#39;&#39;&#39;
+    Check the input parameters for the risk estimate.
+
+    Parameters
+    ----------
+    kwargs_regr : dict
+        A dictionary of fixed parameters for the base regressor.
+    kwargs_ensemble : dict
+        A dictionary of fixed parameters for the ensemble model.
+    kwargs_est : dict
+        Additional keyword arguments for the risk estimate.
+    M : int
+        The ensemble size.
+
+    Returns
+    -------
+    kwargs_regr : dict
+        The updated fixed parameters for the base regressor.
+    kwargs_ensemble : dict
+        The updated fixed parameters for the ensemble model.
+    kwargs_est : dict
+        The updated additional keyword arguments for the risk estimate.
+    &#39;&#39;&#39;
+    kwargs_est = {**{&#39;re_method&#39;:&#39;AVG&#39;, &#39;eta&#39;:None}, **kwargs_est}
+    kwargs_ensemble[&#39;n_estimators&#39;] = M
+
+    return kwargs_regr, kwargs_ensemble, kwargs_est</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="sklearn_ensemble_cv.utils.reset_random_seeds"><code class="name flex">
+<span>def <span class="ident">reset_random_seeds</span></span>(<span>seed)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset_random_seeds(seed):
+    os.environ[&#39;PYTHONHASHSEED&#39;]=str(seed)
+    random.seed(seed)
+    np.random.seed(seed)</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.utils.median_of_means"><code class="name flex">
+<span>def <span class="ident">median_of_means</span></span>(<span>x, eta=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the median of means of the given data.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x</code></strong> :&ensp;<code>1d-array</code></dt>
+<dd>The data.</dd>
+<dt><strong><code>eta</code></strong> :&ensp;<code>float</code></dt>
+<dd>The parameter for the median of means. If None, it is set to 1/n.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>mom</code></strong> :&ensp;<code>float</code></dt>
+<dd>The median of means.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def median_of_means(x, eta=None):
+    &#39;&#39;&#39;
+    Compute the median of means of the given data.
+
+    Parameters
+    ----------
+    x : 1d-array
+        The data.
+    eta : float
+        The parameter for the median of means. If None, it is set to 1/n.
+
+    Returns
+    -------
+    mom : float
+        The median of means.
+    &#39;&#39;&#39;
+    n = len(x)
+    if eta is None:
+        eta = 1/n
+    B = int(np.maximum(
+            np.minimum(np.ceil(8 * np.log(1/eta)), n), 1))
+    ids = np.random.permutation(np.arange(n))
+    ids_list = np.array_split(ids, B)
+    mom = np.median([np.mean(x[ids]) for ids in ids_list])
+    return mom</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.utils.risk_estimate"><code class="name flex">
+<span>def <span class="ident">risk_estimate</span></span>(<span>sq_err, axis=None, method='AVG', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the risk estimate from the squared error.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>sq_err</code></strong> :&ensp;<code>1d-array</code></dt>
+<dd>The squared error.</dd>
+<dt><strong><code>method</code></strong> :&ensp;<code>str</code></dt>
+<dd>The method to use for risk estimation. Either 'AVG' or 'MOM'.</dd>
+<dt><strong><code>kwargs</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional keyword arguments for the risk estimation method.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def risk_estimate(sq_err, axis=None, method=&#39;AVG&#39;, **kwargs):
+    &#39;&#39;&#39;
+    Compute the risk estimate from the squared error.
+
+    Parameters
+    ----------
+    sq_err : 1d-array
+        The squared error.
+    method : str
+        The method to use for risk estimation. Either &#39;AVG&#39; or &#39;MOM&#39;.
+    kwargs : dict
+        Additional keyword arguments for the risk estimation method.
+    &#39;&#39;&#39;
+
+    if len(sq_err)&lt;1:
+        return np.nan
+    
+    if method==&#39;AVG&#39;:
+        risk = np.mean(sq_err, axis=axis)        
+    else:
+        risk = np.apply_along_axis(median_of_means, axis, sq_err, **kwargs)
+    return risk</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.utils.degree_of_freedom"><code class="name flex">
+<span>def <span class="ident">degree_of_freedom</span></span>(<span>regr, X)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the degree of freedom of a fitted regressor.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>regr</code></strong> :&ensp;<code>sklearn regressor</code></dt>
+<dd>The fitted regressor. Can be Ridge, Lasso, or ElasticNet.</dd>
+<dt><strong><code>X</code></strong> :&ensp;<code>2d-array</code></dt>
+<dd>The input data.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>dof</code></strong> :&ensp;<code>float</code></dt>
+<dd>The degree of freedom.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def degree_of_freedom(regr, X):
+    &#39;&#39;&#39;
+    Compute the degree of freedom of a fitted regressor.
+    
+    Parameters
+    ----------
+    regr : sklearn regressor
+        The fitted regressor. Can be Ridge, Lasso, or ElasticNet.
+    X : 2d-array
+        The input data.
+
+    Returns
+    -------
+    dof : float
+        The degree of freedom.
+    &#39;&#39;&#39;
+    k = X.shape[0]
+    if regr.fit_intercept:
+        X = np.c_[np.ones((k,1)), X]
+        nz_coef = np.r_[regr.intercept_!=0, regr.coef_!=0]
+    else:
+        nz_coef = regr.coef_!=0
+    
+    lam = regr.alpha
+    method = regr.__class__.__name__
+
+    if method == &#39;Ridge&#39;:
+        svds = np.linalg.svd(X, compute_uv=False)
+        evds = svds[:k]**2
+        dof = np.sum(evds/(evds + lam))
+
+    elif method == &#39;Lasso&#39;:
+        dof = np.sum(nz_coef)
+            
+    elif method==&#39;ElasticNet&#39;:
+        l1_ratio = regr.l1_ratio
+        lam_2 = lam * (1-l1_ratio)
+
+        if np.any(nz_coef):
+            svds = np.linalg.svd(X[:,nz_coef], compute_uv=False)
+        else:
+            svds = np.array([0.])
+        evds = svds[:k]**2
+        dof = np.sum(evds/(evds + k * lam_2))
+
+    return dof</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.utils.estimate_null_risk"><code class="name flex">
+<span>def <span class="ident">estimate_null_risk</span></span>(<span>Y)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Estimate the null risk of the data for regression problems.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def estimate_null_risk(Y):
+    &#39;&#39;&#39;
+    Estimate the null risk of the data for regression problems.
+    &#39;&#39;&#39;
+    mu = 0.
+    return np.mean((Y-mu)**2)</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.utils.split_grid"><code class="name flex">
+<span>def <span class="ident">split_grid</span></span>(<span>raw_grid, raw_kwarg)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Split the grid and kwarg into two dictionaries.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>raw_grid</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of lists of parameters, possibly with fixed parameters.</dd>
+<dt><strong><code>raw_kwarg</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of fixed parameters.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>grid</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of lists of parameters to tune.</dd>
+<dt><strong><code>kwarg</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of fixed parameters.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def split_grid(raw_grid, raw_kwarg):
+    &#39;&#39;&#39;
+    Split the grid and kwarg into two dictionaries.
+
+    Parameters
+    ----------
+    raw_grid : dict
+        A dictionary of lists of parameters, possibly with fixed parameters.
+    raw_kwarg : dict
+        A dictionary of fixed parameters.
+    
+    Returns
+    -------
+    grid : dict
+        A dictionary of lists of parameters to tune.
+    kwarg : dict
+        A dictionary of fixed parameters.
+    &#39;&#39;&#39;
+
+    grid = {i:j for i,j in raw_grid.items() if not np.isscalar(j)}
+    kwarg = {i:j for i,j in raw_grid.items() if np.isscalar(j) or len(j)==1}
+
+    if raw_kwarg.keys() &amp; kwarg.keys():
+        raise ValueError(&#39;Grid and kwarg cannot have common keys.&#39;)
+    kwarg = {**kwarg, **raw_kwarg}
+    return grid, kwarg</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.utils.make_grid"><code class="name flex">
+<span>def <span class="ident">make_grid</span></span>(<span>dict_regr, dict_ensemble=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a dataframe with all combinations of parameters in dict_params.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>dict_regr</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of parameter names and their possible values for the base regressor.</dd>
+<dt><strong><code>dict_ensemble</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of parameter names and their possible values for the ensemble model.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>config_list_regr</code></strong> :&ensp;<code>list</code></dt>
+<dd>A list of dictionaries, where each dictionary represents one configuration for the base regressor.</dd>
+<dt><strong><code>config_list_ensemble</code></strong> :&ensp;<code>list</code></dt>
+<dd>A list of dictionaries, where each dictionary represents one configuration for the ensemble model.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_grid(dict_regr, dict_ensemble=None):
+    &#39;&#39;&#39;
+    Create a dataframe with all combinations of parameters in dict_params.
+
+    Parameters
+    ----------
+    dict_regr : dict
+        A dictionary of parameter names and their possible values for the base regressor.
+    dict_ensemble : dict
+        A dictionary of parameter names and their possible values for the ensemble model.
+
+    Returns
+    -------
+    config_list_regr : list
+        A list of dictionaries, where each dictionary represents one configuration for the base regressor.
+    config_list_ensemble : list
+        A list of dictionaries, where each dictionary represents one configuration for the ensemble model.
+    &#39;&#39;&#39;    
+    # Get all combinations of parameter values
+    param_values = list(product(*(list(dict_regr.values())+list(dict_ensemble.values()))))
+
+    # Create a list of dictionaries, where each dictionary represents one configuration
+    config_list_regr = [dict(zip(dict_regr.keys(), values[:len(dict_regr)])) for values in param_values]
+    if dict_ensemble is not None:
+        config_list_ensemble = [dict(zip(dict_ensemble.keys(), values[len(dict_regr):])) for values in param_values]
+        return config_list_regr, config_list_ensemble
+    else:
+        return config_list_regr</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.utils.process_grid"><code class="name flex">
+<span>def <span class="ident">process_grid</span></span>(<span>grid_regr, kwargs_regr, grid_ensemble, kwargs_ensemble, kwargs_est, M)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Process the grid and kwarg into two dictionaries.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>grid_regr</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of lists of parameters for the base regressor, possibly with fixed parameters.</dd>
+<dt><strong><code>kwargs_regr</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of fixed parameters for the base regressor.</dd>
+<dt><strong><code>grid_ensemble</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of lists of parameters for the ensemble model, possibly with fixed parameters.</dd>
+<dt><strong><code>kwargs_ensemble</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of fixed parameters for the ensemble model.</dd>
+<dt><strong><code>kwargs_est</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional keyword arguments for the risk estimate.</dd>
+<dt><strong><code>M</code></strong> :&ensp;<code>int</code></dt>
+<dd>The ensemble size.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>grid_regr</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of lists of parameters to tune for the base regressor.</dd>
+<dt><strong><code>kwargs_regr</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of fixed parameters for the base regressor.</dd>
+<dt><strong><code>grid_ensemble</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of lists of parameters to tune for the ensemble model.</dd>
+<dt><strong><code>kwargs_ensemble</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of fixed parameters for the ensemble model.</dd>
+<dt><strong><code>kwargs_est</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional keyword arguments for the risk estimate.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def process_grid(grid_regr, kwargs_regr, grid_ensemble, kwargs_ensemble, kwargs_est, M):
+    &#39;&#39;&#39;
+    Process the grid and kwarg into two dictionaries.
+
+    Parameters
+    ----------
+    grid_regr : dict
+        A dictionary of lists of parameters for the base regressor, possibly with fixed parameters.
+    kwargs_regr : dict
+        A dictionary of fixed parameters for the base regressor.
+    grid_ensemble : dict
+        A dictionary of lists of parameters for the ensemble model, possibly with fixed parameters.
+    kwargs_ensemble : dict
+        A dictionary of fixed parameters for the ensemble model.
+    kwargs_est : dict
+        Additional keyword arguments for the risk estimate.
+    M : int
+        The ensemble size.
+
+    Returns
+    -------
+    grid_regr : dict
+        A dictionary of lists of parameters to tune for the base regressor.
+    kwargs_regr : dict
+        A dictionary of fixed parameters for the base regressor.
+    grid_ensemble : dict
+        A dictionary of lists of parameters to tune for the ensemble model.
+    kwargs_ensemble : dict
+        A dictionary of fixed parameters for the ensemble model.
+    kwargs_est : dict
+        Additional keyword arguments for the risk estimate.    
+    &#39;&#39;&#39;
+    if not grid_regr and not grid_ensemble:
+        raise ValueError(&#39;grid_regr and grid_ensemble cannot both be empty.&#39;)
+    
+    if type(grid_regr) is not type(grid_ensemble):
+        raise ValueError(&#39;grid_regr and grid_ensemble must be of the same type.&#39;)
+    
+    if isinstance(grid_regr, dict):
+        grid_regr, kwargs_regr = split_grid(grid_regr, kwargs_regr)
+        grid_ensemble, kwargs_ensemble = split_grid(grid_ensemble, kwargs_ensemble)
+        grid_regr, grid_ensemble = make_grid(grid_regr, grid_ensemble)
+
+    kwargs_ensemble = {**{&#39;random_state&#39;:0}, **kwargs_ensemble}
+    kwargs_regr, kwargs_ensemble, kwargs_est = check_input(kwargs_regr, kwargs_ensemble, kwargs_est, M)
+    return grid_regr, kwargs_regr, grid_ensemble, kwargs_ensemble, kwargs_est</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.utils.check_input"><code class="name flex">
+<span>def <span class="ident">check_input</span></span>(<span>kwargs_regr, kwargs_ensemble, kwargs_est, M)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check the input parameters for the risk estimate.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>kwargs_regr</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of fixed parameters for the base regressor.</dd>
+<dt><strong><code>kwargs_ensemble</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary of fixed parameters for the ensemble model.</dd>
+<dt><strong><code>kwargs_est</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional keyword arguments for the risk estimate.</dd>
+<dt><strong><code>M</code></strong> :&ensp;<code>int</code></dt>
+<dd>The ensemble size.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>kwargs_regr</code></strong> :&ensp;<code>dict</code></dt>
+<dd>The updated fixed parameters for the base regressor.</dd>
+<dt><strong><code>kwargs_ensemble</code></strong> :&ensp;<code>dict</code></dt>
+<dd>The updated fixed parameters for the ensemble model.</dd>
+<dt><strong><code>kwargs_est</code></strong> :&ensp;<code>dict</code></dt>
+<dd>The updated additional keyword arguments for the risk estimate.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_input(kwargs_regr, kwargs_ensemble, kwargs_est, M):
+    &#39;&#39;&#39;
+    Check the input parameters for the risk estimate.
+
+    Parameters
+    ----------
+    kwargs_regr : dict
+        A dictionary of fixed parameters for the base regressor.
+    kwargs_ensemble : dict
+        A dictionary of fixed parameters for the ensemble model.
+    kwargs_est : dict
+        Additional keyword arguments for the risk estimate.
+    M : int
+        The ensemble size.
+
+    Returns
+    -------
+    kwargs_regr : dict
+        The updated fixed parameters for the base regressor.
+    kwargs_ensemble : dict
+        The updated fixed parameters for the ensemble model.
+    kwargs_est : dict
+        The updated additional keyword arguments for the risk estimate.
+    &#39;&#39;&#39;
+    kwargs_est = {**{&#39;re_method&#39;:&#39;AVG&#39;, &#39;eta&#39;:None}, **kwargs_est}
+    kwargs_ensemble[&#39;n_estimators&#39;] = M
+
+    return kwargs_regr, kwargs_ensemble, kwargs_est</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="sklearn_ensemble_cv" href="index.html">sklearn_ensemble_cv</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="sklearn_ensemble_cv.utils.reset_random_seeds" href="#sklearn_ensemble_cv.utils.reset_random_seeds">reset_random_seeds</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.utils.median_of_means" href="#sklearn_ensemble_cv.utils.median_of_means">median_of_means</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.utils.risk_estimate" href="#sklearn_ensemble_cv.utils.risk_estimate">risk_estimate</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.utils.degree_of_freedom" href="#sklearn_ensemble_cv.utils.degree_of_freedom">degree_of_freedom</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.utils.estimate_null_risk" href="#sklearn_ensemble_cv.utils.estimate_null_risk">estimate_null_risk</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.utils.split_grid" href="#sklearn_ensemble_cv.utils.split_grid">split_grid</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.utils.make_grid" href="#sklearn_ensemble_cv.utils.make_grid">make_grid</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.utils.process_grid" href="#sklearn_ensemble_cv.utils.process_grid">process_grid</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.utils.check_input" href="#sklearn_ensemble_cv.utils.check_input">check_input</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

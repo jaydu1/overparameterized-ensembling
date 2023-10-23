@@ -1,0 +1,551 @@
+---
+layout: page
+disable_anchors: false
+title: "sklearn_ensemble_cv"
+permalink: /sklearn-ensemble-cv/docs/simu_data.html
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.1" />
+<title>sklearn_ensemble_cv.simu_data API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>sklearn_ensemble_cv.simu_data</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import numpy as np
+import scipy as sp
+from scipy.linalg import sqrtm, toeplitz, block_diag
+from scipy.sparse.linalg import eigsh
+
+
+
+def create_toeplitz_cov_mat(sigma_sq, first_column_except_1):
+    &#39;&#39;&#39;
+    Parameters
+    ----------
+    sigma_sq: float
+        scalar_like,
+    first_column_except_1: array
+        1d-array, except diagonal 1.
+    
+    Return:
+    ----------
+        2d-array with dimension (len(first_column)+1, len(first_column)+1)
+    &#39;&#39;&#39;
+    first_column = np.append(1, first_column_except_1)
+    cov_mat = sigma_sq * toeplitz(first_column)
+    return cov_mat
+
+
+def ar1_cov(rho, n, sigma_sq=1):
+    &#34;&#34;&#34;
+    Parameters
+    ----------    
+    rho : float
+        scalar, should be within -1 and 1.
+    n : int
+        scalar, number of rows and columns of the covariance matrix.
+    sigma_sq : float
+        scalar, multiplicative factor of the covariance matrix.
+    
+    Return
+    ----------
+        2d-matrix of (n,n)
+    &#34;&#34;&#34;
+    if rho != 0.:
+        rho_tile = rho * np.ones([n - 1])
+        first_column_except_1 = np.cumprod(rho_tile)
+        cov_mat = create_toeplitz_cov_mat(sigma_sq, first_column_except_1)
+    else:
+        cov_mat = np.identity(n)
+    return cov_mat
+
+
+def block_ar1_cov(rhos, n):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    rhos : float
+        array, should be within -1 and 1.
+    n : int
+    
+    Return
+    ----------
+        2d-matrix of (n,n)
+    &#34;&#34;&#34;
+    n_block = len(rhos)
+    s_block = n // n_block
+    covs = []
+    for i in range(n_block):
+        ns = s_block if i &lt; n_block - 1 else n - s_block * (n_block - 1)
+        covs.append(ar1_cov(rhos[i], ns))
+    cov_mat = block_diag(*covs)
+    return cov_mat
+
+
+
+def generate_data(
+    n, p, coef=&#39;random&#39;, func=&#39;linear&#39;,
+    rho_ar1=0., sigma=1, df=np.inf, n_test=1000, sigma_quad=1.,
+):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    n : int
+        sample size
+    p : int
+        number of features
+    coef : str or array-like
+        If &#39;sorted&#39;, the coefficients are sorted in descending order of absolute value.
+        If &#39;random&#39;, the coefficients are randomly generated from a uniform distribution.
+        If an array-like object, the coefficients are set to the given values.
+    func : str
+        The functional form of the relationship between the features and the response.
+        If &#39;linear&#39;, the response is a linear combination of the features.
+        If &#39;nonlinear&#39;, the response is a nonlinear function of the features.
+    rho_ar1 : float or array-like
+        If a scalar, the AR(1) correlation coefficient for the features.
+        If an array-like object, the AR(1) correlation coefficients for each block of features.
+    sigma : float
+        The standard deviation of the noise.
+    df : float
+        The degrees of freedom for the t-distribution used to generate the noise.
+        If np.inf, the noise is generated from a normal distribution.
+    n_test : int
+        The number of test samples to generate.
+    sigma_quad : float
+        The standard deviation of the quadratic term in the nonlinear function.
+    
+    Returns
+    -------
+    X_train : ndarray of shape (n, p)
+        The training features.
+    y_train : ndarray of shape (n,)
+        The training response.
+    X_test : ndarray of shape (n_test, p)
+        The test features.
+    y_test : ndarray of shape (n_test,)
+        The test response.
+    &#34;&#34;&#34;
+        
+    if np.isscalar(rho_ar1):
+        Sigma = ar1_cov(rho_ar1, p)
+    else:
+        Sigma = block_ar1_cov(rho_ar1, p)
+
+    if df==np.inf:
+        Z = np.random.normal(size=(n,p))
+        Z_test = np.random.normal(size=(n_test,p))
+    else:
+        Z = np.random.standard_t(df=df, size=(n,p)) / np.sqrt(df / (df - 2))
+        Z_test = np.random.standard_t(df=df, size=(n_test,p)) / np.sqrt(df / (df - 2))
+        
+    Sigma_sqrt = sqrtm(Sigma)
+    X = Z @ Sigma_sqrt
+    X_test = Z_test @ Sigma_sqrt
+    
+    if sigma&lt;np.inf:
+        if coef.startswith(&#39;eig&#39;):
+            top_k = int(coef.split(&#39;-&#39;)[1])
+            _, beta0 = eigsh(Sigma, k=top_k)
+            
+            beta0 = np.mean(beta0, axis=-1)
+            if np.isscalar(rho_ar1):
+                rho2 = (1-rho_ar1**2)/(1-rho_ar1)**2/top_k
+            else:
+                rho2 = np.linalg.norm(beta0)**2
+        elif coef==&#39;sorted&#39;:
+            beta0 = np.random.normal(size=(p,))
+            beta0 = beta0[np.argsort(-np.abs(beta0))]
+            beta0 /= np.linalg.norm(beta0)
+            rho2 = 1.        
+        elif coef==&#39;uniform&#39;:
+            beta0 = np.ones(p,) / np.sqrt(p)
+            rho2 = 1.
+        elif coef==&#39;random&#39;:
+            beta0 = np.random.normal(size=(p,))
+            beta0 /= np.linalg.norm(beta0)
+            rho2 = 1.
+        elif coef.startswith(&#39;sparse&#39;):
+            s = int(coef.split(&#39;-&#39;)[1])
+            beta0 = np.zeros(p,)
+            beta0[:s] = 1/np.sqrt(s)
+            rho2 = 1.
+            
+    else:
+        rho2 = 0.
+        beta0 = np.zeros(p)
+
+    Y = X@beta0[:,None]   
+    Y_test = X_test@beta0[:,None]
+    
+    if func==&#39;linear&#39;:
+        pass
+    elif func==&#39;quad&#39;:
+        Y += sigma_quad * (np.mean(X**2, axis=-1) - np.trace(Sigma)/p)[:, None]
+        Y_test += sigma_quad * (np.mean(X_test**2, axis=-1) - np.trace(Sigma)/p)[:, None]
+    elif func==&#39;tanh&#39;:
+        Y = np.tanh(Y)
+        Y_test = np.tanh(Y_test)
+    else:
+        raise ValueError(&#39;Not implemented.&#39;)
+
+    if sigma&gt;0.:
+        if df==np.inf:
+            Y = Y + sigma * np.random.normal(size=(n,1))            
+            Y_test += sigma * np.random.normal(size=(n_test,1))
+        else:
+            Y = Y + np.random.standard_t(df=df, size=(n,1))
+            Y_test += np.random.standard_t(df=df, size=(n_test,1))
+            sigma = np.sqrt(df / (df - 2))
+    else:
+        sigma = 0.
+
+    return Sigma, beta0, X, Y, X_test, Y_test, rho2, sigma**2</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="sklearn_ensemble_cv.simu_data.create_toeplitz_cov_mat"><code class="name flex">
+<span>def <span class="ident">create_toeplitz_cov_mat</span></span>(<span>sigma_sq, first_column_except_1)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>sigma_sq</code></strong> :&ensp;<code>float</code></dt>
+<dd>scalar_like,</dd>
+<dt><strong><code>first_column_except_1</code></strong> :&ensp;<code>array</code></dt>
+<dd>1d-array, except diagonal 1.</dd>
+</dl>
+<h2 id="return">Return:</h2>
+<pre><code>2d-array with dimension (len(first_column)+1, len(first_column)+1)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_toeplitz_cov_mat(sigma_sq, first_column_except_1):
+    &#39;&#39;&#39;
+    Parameters
+    ----------
+    sigma_sq: float
+        scalar_like,
+    first_column_except_1: array
+        1d-array, except diagonal 1.
+    
+    Return:
+    ----------
+        2d-array with dimension (len(first_column)+1, len(first_column)+1)
+    &#39;&#39;&#39;
+    first_column = np.append(1, first_column_except_1)
+    cov_mat = sigma_sq * toeplitz(first_column)
+    return cov_mat</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.simu_data.ar1_cov"><code class="name flex">
+<span>def <span class="ident">ar1_cov</span></span>(<span>rho, n, sigma_sq=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<p>rho : float
+scalar, should be within -1 and 1.
+n : int
+scalar, number of rows and columns of the covariance matrix.
+sigma_sq : float
+scalar, multiplicative factor of the covariance matrix.</p>
+<h2 id="return">Return</h2>
+<pre><code>2d-matrix of (n,n)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ar1_cov(rho, n, sigma_sq=1):
+    &#34;&#34;&#34;
+    Parameters
+    ----------    
+    rho : float
+        scalar, should be within -1 and 1.
+    n : int
+        scalar, number of rows and columns of the covariance matrix.
+    sigma_sq : float
+        scalar, multiplicative factor of the covariance matrix.
+    
+    Return
+    ----------
+        2d-matrix of (n,n)
+    &#34;&#34;&#34;
+    if rho != 0.:
+        rho_tile = rho * np.ones([n - 1])
+        first_column_except_1 = np.cumprod(rho_tile)
+        cov_mat = create_toeplitz_cov_mat(sigma_sq, first_column_except_1)
+    else:
+        cov_mat = np.identity(n)
+    return cov_mat</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.simu_data.block_ar1_cov"><code class="name flex">
+<span>def <span class="ident">block_ar1_cov</span></span>(<span>rhos, n)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>rhos</code></strong> :&ensp;<code>float</code></dt>
+<dd>array, should be within -1 and 1.</dd>
+<dt><strong><code>n</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="return">Return</h2>
+<pre><code>2d-matrix of (n,n)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def block_ar1_cov(rhos, n):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    rhos : float
+        array, should be within -1 and 1.
+    n : int
+    
+    Return
+    ----------
+        2d-matrix of (n,n)
+    &#34;&#34;&#34;
+    n_block = len(rhos)
+    s_block = n // n_block
+    covs = []
+    for i in range(n_block):
+        ns = s_block if i &lt; n_block - 1 else n - s_block * (n_block - 1)
+        covs.append(ar1_cov(rhos[i], ns))
+    cov_mat = block_diag(*covs)
+    return cov_mat</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.simu_data.generate_data"><code class="name flex">
+<span>def <span class="ident">generate_data</span></span>(<span>n, p, coef='random', func='linear', rho_ar1=0.0, sigma=1, df=inf, n_test=1000, sigma_quad=1.0)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>n</code></strong> :&ensp;<code>int</code></dt>
+<dd>sample size</dd>
+<dt><strong><code>p</code></strong> :&ensp;<code>int</code></dt>
+<dd>number of features</dd>
+<dt><strong><code>coef</code></strong> :&ensp;<code>str</code> or <code>array-like</code></dt>
+<dd>If 'sorted', the coefficients are sorted in descending order of absolute value.
+If 'random', the coefficients are randomly generated from a uniform distribution.
+If an array-like object, the coefficients are set to the given values.</dd>
+<dt><strong><code>func</code></strong> :&ensp;<code>str</code></dt>
+<dd>The functional form of the relationship between the features and the response.
+If 'linear', the response is a linear combination of the features.
+If 'nonlinear', the response is a nonlinear function of the features.</dd>
+<dt><strong><code>rho_ar1</code></strong> :&ensp;<code>float</code> or <code>array-like</code></dt>
+<dd>If a scalar, the AR(1) correlation coefficient for the features.
+If an array-like object, the AR(1) correlation coefficients for each block of features.</dd>
+<dt><strong><code>sigma</code></strong> :&ensp;<code>float</code></dt>
+<dd>The standard deviation of the noise.</dd>
+<dt><strong><code>df</code></strong> :&ensp;<code>float</code></dt>
+<dd>The degrees of freedom for the t-distribution used to generate the noise.
+If np.inf, the noise is generated from a normal distribution.</dd>
+<dt><strong><code>n_test</code></strong> :&ensp;<code>int</code></dt>
+<dd>The number of test samples to generate.</dd>
+<dt><strong><code>sigma_quad</code></strong> :&ensp;<code>float</code></dt>
+<dd>The standard deviation of the quadratic term in the nonlinear function.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>X_train</code></strong> :&ensp;<code>ndarray</code> of <code>shape (n, p)</code></dt>
+<dd>The training features.</dd>
+<dt><strong><code>y_train</code></strong> :&ensp;<code>ndarray</code> of <code>shape (n,)</code></dt>
+<dd>The training response.</dd>
+<dt><strong><code>X_test</code></strong> :&ensp;<code>ndarray</code> of <code>shape (n_test, p)</code></dt>
+<dd>The test features.</dd>
+<dt><strong><code>y_test</code></strong> :&ensp;<code>ndarray</code> of <code>shape (n_test,)</code></dt>
+<dd>The test response.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_data(
+    n, p, coef=&#39;random&#39;, func=&#39;linear&#39;,
+    rho_ar1=0., sigma=1, df=np.inf, n_test=1000, sigma_quad=1.,
+):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    n : int
+        sample size
+    p : int
+        number of features
+    coef : str or array-like
+        If &#39;sorted&#39;, the coefficients are sorted in descending order of absolute value.
+        If &#39;random&#39;, the coefficients are randomly generated from a uniform distribution.
+        If an array-like object, the coefficients are set to the given values.
+    func : str
+        The functional form of the relationship between the features and the response.
+        If &#39;linear&#39;, the response is a linear combination of the features.
+        If &#39;nonlinear&#39;, the response is a nonlinear function of the features.
+    rho_ar1 : float or array-like
+        If a scalar, the AR(1) correlation coefficient for the features.
+        If an array-like object, the AR(1) correlation coefficients for each block of features.
+    sigma : float
+        The standard deviation of the noise.
+    df : float
+        The degrees of freedom for the t-distribution used to generate the noise.
+        If np.inf, the noise is generated from a normal distribution.
+    n_test : int
+        The number of test samples to generate.
+    sigma_quad : float
+        The standard deviation of the quadratic term in the nonlinear function.
+    
+    Returns
+    -------
+    X_train : ndarray of shape (n, p)
+        The training features.
+    y_train : ndarray of shape (n,)
+        The training response.
+    X_test : ndarray of shape (n_test, p)
+        The test features.
+    y_test : ndarray of shape (n_test,)
+        The test response.
+    &#34;&#34;&#34;
+        
+    if np.isscalar(rho_ar1):
+        Sigma = ar1_cov(rho_ar1, p)
+    else:
+        Sigma = block_ar1_cov(rho_ar1, p)
+
+    if df==np.inf:
+        Z = np.random.normal(size=(n,p))
+        Z_test = np.random.normal(size=(n_test,p))
+    else:
+        Z = np.random.standard_t(df=df, size=(n,p)) / np.sqrt(df / (df - 2))
+        Z_test = np.random.standard_t(df=df, size=(n_test,p)) / np.sqrt(df / (df - 2))
+        
+    Sigma_sqrt = sqrtm(Sigma)
+    X = Z @ Sigma_sqrt
+    X_test = Z_test @ Sigma_sqrt
+    
+    if sigma&lt;np.inf:
+        if coef.startswith(&#39;eig&#39;):
+            top_k = int(coef.split(&#39;-&#39;)[1])
+            _, beta0 = eigsh(Sigma, k=top_k)
+            
+            beta0 = np.mean(beta0, axis=-1)
+            if np.isscalar(rho_ar1):
+                rho2 = (1-rho_ar1**2)/(1-rho_ar1)**2/top_k
+            else:
+                rho2 = np.linalg.norm(beta0)**2
+        elif coef==&#39;sorted&#39;:
+            beta0 = np.random.normal(size=(p,))
+            beta0 = beta0[np.argsort(-np.abs(beta0))]
+            beta0 /= np.linalg.norm(beta0)
+            rho2 = 1.        
+        elif coef==&#39;uniform&#39;:
+            beta0 = np.ones(p,) / np.sqrt(p)
+            rho2 = 1.
+        elif coef==&#39;random&#39;:
+            beta0 = np.random.normal(size=(p,))
+            beta0 /= np.linalg.norm(beta0)
+            rho2 = 1.
+        elif coef.startswith(&#39;sparse&#39;):
+            s = int(coef.split(&#39;-&#39;)[1])
+            beta0 = np.zeros(p,)
+            beta0[:s] = 1/np.sqrt(s)
+            rho2 = 1.
+            
+    else:
+        rho2 = 0.
+        beta0 = np.zeros(p)
+
+    Y = X@beta0[:,None]   
+    Y_test = X_test@beta0[:,None]
+    
+    if func==&#39;linear&#39;:
+        pass
+    elif func==&#39;quad&#39;:
+        Y += sigma_quad * (np.mean(X**2, axis=-1) - np.trace(Sigma)/p)[:, None]
+        Y_test += sigma_quad * (np.mean(X_test**2, axis=-1) - np.trace(Sigma)/p)[:, None]
+    elif func==&#39;tanh&#39;:
+        Y = np.tanh(Y)
+        Y_test = np.tanh(Y_test)
+    else:
+        raise ValueError(&#39;Not implemented.&#39;)
+
+    if sigma&gt;0.:
+        if df==np.inf:
+            Y = Y + sigma * np.random.normal(size=(n,1))            
+            Y_test += sigma * np.random.normal(size=(n_test,1))
+        else:
+            Y = Y + np.random.standard_t(df=df, size=(n,1))
+            Y_test += np.random.standard_t(df=df, size=(n_test,1))
+            sigma = np.sqrt(df / (df - 2))
+    else:
+        sigma = 0.
+
+    return Sigma, beta0, X, Y, X_test, Y_test, rho2, sigma**2</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="sklearn_ensemble_cv" href="index.html">sklearn_ensemble_cv</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="sklearn_ensemble_cv.simu_data.create_toeplitz_cov_mat" href="#sklearn_ensemble_cv.simu_data.create_toeplitz_cov_mat">create_toeplitz_cov_mat</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.simu_data.ar1_cov" href="#sklearn_ensemble_cv.simu_data.ar1_cov">ar1_cov</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.simu_data.block_ar1_cov" href="#sklearn_ensemble_cv.simu_data.block_ar1_cov">block_ar1_cov</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.simu_data.generate_data" href="#sklearn_ensemble_cv.simu_data.generate_data">generate_data</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

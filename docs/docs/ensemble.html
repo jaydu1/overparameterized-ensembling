@@ -1,0 +1,1160 @@
+---
+layout: page
+disable_anchors: false
+title: "sklearn_ensemble_cv"
+permalink: /sklearn-ensemble-cv/docs/ensemble.html
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.1" />
+<title>sklearn_ensemble_cv.ensemble API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML'></script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>sklearn_ensemble_cv.ensemble</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from typing import List
+from sklearn.ensemble import BaggingRegressor
+from sklearn_ensemble_cv.utils import risk_estimate, degree_of_freedom
+
+from joblib import Parallel, delayed
+n_jobs = 16
+
+import numpy as np
+import pandas as pd
+from functools import reduce
+import itertools
+
+import warnings
+warnings.filterwarnings(&#39;ignore&#39;) 
+
+
+
+class Ensemble(BaggingRegressor):
+    &#39;&#39;&#39;
+    Ensemble class is built on top of sklearn.ensemble.BaggingRegressor.
+    It provides additional methods for computing ECV estimates.
+    &#39;&#39;&#39;
+    def __init__(self, **kwargs):
+        super(BaggingRegressor, self).__init__(**kwargs)
+
+
+    def predict_individual(self: BaggingRegressor, X: np.ndarray, n_jobs: int=-1) -&gt; np.ndarray:
+        &#39;&#39;&#39;
+        Predicts the target values for the given input data using the provided BaggingRegressor model.
+
+        Parameters
+        ----------
+            regr : BaggingRegressor
+                The BaggingRegressor model to use for prediction.
+            X : np.ndarray
+                [n, p] The input data to predict target values for.
+
+        Returns:
+            Y_hat : np.ndarray
+                [n, M] The predicted target values of all $M$ estimators for the input data.
+        &#39;&#39;&#39;
+        with Parallel(n_jobs=n_jobs, max_nbytes=None, verbose=0) as parallel:
+            Y_hat = parallel(
+                delayed(lambda reg,X: reg.predict(X[:,features]).reshape(-1,1))(reg, X)
+                for reg,features in zip(self.estimators_,self.estimators_features_)
+            )
+        Y_hat = np.concatenate(Y_hat, axis=-1)
+        return Y_hat
+    
+
+    def compute_risk(self, X, Y, M_test=None, return_df=False, n_jobs=-1, **kwargs_est):
+        if M_test is None:
+            M_test = self.n_estimators
+        if M_test&gt;self.n_estimators:
+            raise ValueError(&#39;The ensemble size M must be less than or equal to the number of estimators in the BaggingRegressor model.&#39;)
+        if Y.ndim==1:
+            Y = Y[:,None]
+
+        Y_hat = self.predict_individual(X, n_jobs)
+        Y_hat = np.cumsum(Y_hat, axis=1) / np.arange(1,M_test+1)
+        err_eval = (Y_hat - Y)**2
+        risk = risk_estimate(err_eval, axis=0, **kwargs_est)
+
+        if return_df:
+            df = pd.DataFrame({&#39;M&#39;:np.arange(1,M_test+1), &#39;risk&#39;:risk})
+            return df
+        else:
+            return risk
+    
+    
+    def compute_ecv_estimate(self, X_train, Y_train, M_test=None, M0=None, return_df=False, n_jobs=-1, **kwargs_est):
+        &#39;&#39;&#39;
+        Computes the ECV estimate for the given input data using the provided BaggingRegressor model.
+
+        Parameters
+        ----------
+        X_train : np.ndarray
+            [n, p] The input covariates.
+        Y_train : np.ndarray
+            [n, ] The target values of the input data.
+        M_test : int or np.ndarray
+            The maximum ensemble size of the ECV estimate.
+        M0 : int, optional
+            The number of estimators to use for the OOB estimate. If None, M0 is set to the number of estimators in the BaggingRegressor model.
+        return_df : bool, optional
+            If True, returns the ECV estimate as a pandas.DataFrame object.
+        n_jobs : int, optional
+            The number of jobs to run in parallel. If -1, all CPUs are used.
+        kwargs_est : dict
+            Additional keyword arguments for the risk estimate.
+
+        Returns:
+        --------
+        risk_ecv : np.ndarray or pandas.DataFrame
+            [M_test, ] The ECV estimate for each ensemble size in M_test.
+        &#39;&#39;&#39;
+        if M_test is None:
+            M_test = self.n_estimators
+        if M0 is None:
+            M0 = self.n_estimators
+        if M0&lt;2:
+            raise ValueError(&#39;The ensemble size M or M0 must be at least 2.&#39;)
+        if np.isscalar(M_test):
+            M_test = np.arange(1,M_test+1)
+        else:
+            M_test = np.array(M_test)
+        if Y_train.ndim==1:
+            Y_train = Y_train[:,None]
+        ids_list = self.estimators_samples_[:M0]
+        Y_hat = self.predict_individual(X_train, n_jobs)
+        dev_eval = Y_hat - Y_train
+        err_eval = dev_eval**2
+        
+        with Parallel(n_jobs=n_jobs, max_nbytes=None, verbose=0) as parallel:
+            res_1 = parallel(
+                delayed(lambda j:risk_estimate(
+                    np.delete(err_eval[:,j], ids_list[j]), **kwargs_est)
+                       )(j)
+                for j in np.arange(M0)
+            )
+            res_2 = parallel(
+                delayed(lambda i,j:risk_estimate(
+                    np.mean(
+                        np.delete(dev_eval[:,[i,j]], 
+                                  np.union1d(ids_list[i], ids_list[j]), axis=0), axis=1)**2,
+                    **kwargs_est
+                ))(i,j)
+                for i,j in itertools.combinations(np.arange(M0), 2)
+            )
+                    
+        risk_ecv_1 = np.nanmean(res_1)
+        risk_ecv_2 = np.nanmean(res_2)
+        risk_ecv = - (1-2/M_test) * risk_ecv_1 + 2*(1-1/M_test) * risk_ecv_2
+        if return_df:
+            df = pd.DataFrame({&#39;M&#39;:M_test, &#39;estimate&#39;:risk_ecv})
+            return df
+        else:
+            return risk_ecv
+        
+
+    def compute_gcv_estimate(self, X_train, Y_train, type=&#39;full&#39;, return_df=False, n_jobs=-1, **kwargs_est):
+        &#39;&#39;&#39;
+        Computes the GCV estimate for the given input data using the provided BaggingRegressor model.
+
+        Parameters
+        ----------
+        X_train : np.ndarray
+            [n, p] The input covariates.
+        Y_train : np.ndarray
+            [n, ] The target values of the input data.
+        type : str, optional
+            The type of GCV estimate to compute. Can be either &#39;full&#39; (the naive GCV using full observations) or 
+            &#39;union&#39; (the naive GCV using training observations).
+        return_df : bool, optional
+            If True, returns the GCV estimate as a pandas.DataFrame object.
+        n_jobs : int, optional
+            The number of jobs to run in parallel. If -1, all CPUs are used.
+        kwargs_est : dict
+            Additional keyword arguments for the risk estimate.
+
+        Returns:
+        --------
+        risk_gcv : np.ndarray or pandas.DataFrame
+            [M_test, ] The GCV estimate for each ensemble size in M_test.
+        &#39;&#39;&#39;
+        if self.base_estimator_.__class__.__name__ not in [&#39;Ridge&#39;, &#39;Lasso&#39;, &#39;ElasticNet&#39;]:
+            raise ValueError(&#39;GCV is only implemented for Ridge, Lasso, and ElasticNet regression.&#39;)
+        if Y_train.ndim==1:
+            Y_train = Y_train[:,None]
+        M = self.n_estimators
+        M_arr = np.arange(M)
+        ids_list = self.estimators_samples_
+        Y_hat = self.predict_individual(X_train, n_jobs)
+        Y_hat = np.cumsum(Y_hat, axis=1) / (M_arr+1)
+        n = X_train.shape[0]
+        err_eval = (Y_hat - Y_train)**2
+
+        with Parallel(n_jobs=n_jobs, max_nbytes=None, verbose=0) as parallel:
+            dof = parallel(
+                delayed(lambda j:degree_of_freedom(self.estimators_[j], X_train[ids_list[j]])
+                       )(j)
+                for j in M_arr
+            )
+            dof = np.mean(dof)
+
+        if type==&#39;full&#39;:
+            err_train = np.mean(err_eval, axis=0)
+            deno = (1 - dof/n)**2
+            risk_gcv = err_train / deno
+        else:            
+            ids_union_list = [reduce(np.union1d, ids_list[:j+1]) for j in M_arr]
+            n_ids = np.array([len(ids) for ids in ids_union_list])
+            err_train = np.array([np.mean(err_eval[ids_union_list[j],j]) for j in M_arr])
+            deno = (1 - dof/n_ids)**2
+            risk_gcv = err_train / deno
+        
+        if return_df:
+            df = pd.DataFrame({&#39;M&#39;:M_arr+1, &#39;estimate&#39;:risk_gcv, &#39;err_train&#39;:err_train, &#39;deno&#39;:deno})
+            return df
+        else:
+            return risk_gcv
+        
+    
+
+    def compute_cgcv_estimate(self, X_train, Y_train, type=&#39;full&#39;, return_df=False, n_jobs=-1, **kwargs_est):
+        &#39;&#39;&#39;
+        Computes the GCV estimate for the given input data using the provided BaggingRegressor model.
+
+        Parameters
+        ----------
+        X_train : np.ndarray
+            [n, p] The input covariates.
+        Y_train : np.ndarray
+            [n, ] The target values of the input data.
+        type : str, optional
+            The type of CGCV estimate to compute. Can be either &#39;full&#39; (using full observations) or 
+            &#39;ovlp&#39; (using overlapping observations).
+        return_df : bool, optional
+            If True, returns the GCV estimate as a pandas.DataFrame object.
+        n_jobs : int, optional
+            The number of jobs to run in parallel. If -1, all CPUs are used.
+        kwargs_est : dict
+            Additional keyword arguments for the risk estimate.
+
+        Returns:
+        --------
+        risk_gcv : np.ndarray or pandas.DataFrame
+            [M_test, ] The CGCV estimate for each ensemble size in M_test.
+        &#39;&#39;&#39;
+        if self.base_estimator_.__class__.__name__ not in [&#39;Ridge&#39;, &#39;Lasso&#39;, &#39;ElasticNet&#39;]:
+            raise ValueError(&#39;GCV is only implemented for Ridge, Lasso, and ElasticNet regression.&#39;)
+        if Y_train.ndim==1:
+            Y_train = Y_train[:,None]
+        M = self.n_estimators
+        M_arr = np.arange(M)
+        ids_list = self.estimators_samples_
+        Y_hat = self.predict_individual(X_train, n_jobs)
+          
+        n, p = X_train.shape
+        if self.estimators_[0].fit_intercept:
+            p += 1
+        phi = p/n
+        k = int(n * self.max_samples)
+        psi = p/k
+
+        with Parallel(n_jobs=n_jobs, max_nbytes=None, verbose=0) as parallel:
+            dof = parallel(
+                delayed(lambda j:degree_of_freedom(self.estimators_[j], X_train[ids_list[j]])
+                       )(j)
+                for j in M_arr
+            )
+            dof = np.mean(dof)
+
+        err_train = (Y_hat-Y_train)**2
+        if type==&#39;full&#39;:
+            correct_term = np.mean(err_train) / (1 - 2* dof/n + dof**2/(k*n))
+        else:
+            correct_term = np.mean([np.mean(err_train[ids_list[j],j]) for j in M_arr]) / (1 - dof/n)**2
+
+        Y_hat = np.cumsum(Y_hat, axis=1) / (M_arr+1)
+        err_eval = (Y_hat - Y_train)**2
+        err_train = np.array([np.mean(err_eval[:,j]) for j in M_arr])
+        deno = (1 - dof/n)**2
+        C = 1/ (n/dof - 1)**2 / (M_arr+1) * (psi/phi - 1) * correct_term
+        risk_cgcv = err_train / deno - C
+        
+        if return_df:
+            df = pd.DataFrame({&#39;M&#39;:M_arr+1, &#39;estimate&#39;:risk_cgcv, &#39;err_train&#39;:err_train, &#39;deno&#39;:deno, &#39;C&#39;:C})
+            return df
+        else:
+            return risk_cgcv
+    </code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="sklearn_ensemble_cv.ensemble.Ensemble"><code class="flex name class">
+<span>class <span class="ident">Ensemble</span></span>
+<span>(</span><span>**kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Ensemble class is built on top of sklearn.ensemble.BaggingRegressor.
+It provides additional methods for computing ECV estimates.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Ensemble(BaggingRegressor):
+    &#39;&#39;&#39;
+    Ensemble class is built on top of sklearn.ensemble.BaggingRegressor.
+    It provides additional methods for computing ECV estimates.
+    &#39;&#39;&#39;
+    def __init__(self, **kwargs):
+        super(BaggingRegressor, self).__init__(**kwargs)
+
+
+    def predict_individual(self: BaggingRegressor, X: np.ndarray, n_jobs: int=-1) -&gt; np.ndarray:
+        &#39;&#39;&#39;
+        Predicts the target values for the given input data using the provided BaggingRegressor model.
+
+        Parameters
+        ----------
+            regr : BaggingRegressor
+                The BaggingRegressor model to use for prediction.
+            X : np.ndarray
+                [n, p] The input data to predict target values for.
+
+        Returns:
+            Y_hat : np.ndarray
+                [n, M] The predicted target values of all $M$ estimators for the input data.
+        &#39;&#39;&#39;
+        with Parallel(n_jobs=n_jobs, max_nbytes=None, verbose=0) as parallel:
+            Y_hat = parallel(
+                delayed(lambda reg,X: reg.predict(X[:,features]).reshape(-1,1))(reg, X)
+                for reg,features in zip(self.estimators_,self.estimators_features_)
+            )
+        Y_hat = np.concatenate(Y_hat, axis=-1)
+        return Y_hat
+    
+
+    def compute_risk(self, X, Y, M_test=None, return_df=False, n_jobs=-1, **kwargs_est):
+        if M_test is None:
+            M_test = self.n_estimators
+        if M_test&gt;self.n_estimators:
+            raise ValueError(&#39;The ensemble size M must be less than or equal to the number of estimators in the BaggingRegressor model.&#39;)
+        if Y.ndim==1:
+            Y = Y[:,None]
+
+        Y_hat = self.predict_individual(X, n_jobs)
+        Y_hat = np.cumsum(Y_hat, axis=1) / np.arange(1,M_test+1)
+        err_eval = (Y_hat - Y)**2
+        risk = risk_estimate(err_eval, axis=0, **kwargs_est)
+
+        if return_df:
+            df = pd.DataFrame({&#39;M&#39;:np.arange(1,M_test+1), &#39;risk&#39;:risk})
+            return df
+        else:
+            return risk
+    
+    
+    def compute_ecv_estimate(self, X_train, Y_train, M_test=None, M0=None, return_df=False, n_jobs=-1, **kwargs_est):
+        &#39;&#39;&#39;
+        Computes the ECV estimate for the given input data using the provided BaggingRegressor model.
+
+        Parameters
+        ----------
+        X_train : np.ndarray
+            [n, p] The input covariates.
+        Y_train : np.ndarray
+            [n, ] The target values of the input data.
+        M_test : int or np.ndarray
+            The maximum ensemble size of the ECV estimate.
+        M0 : int, optional
+            The number of estimators to use for the OOB estimate. If None, M0 is set to the number of estimators in the BaggingRegressor model.
+        return_df : bool, optional
+            If True, returns the ECV estimate as a pandas.DataFrame object.
+        n_jobs : int, optional
+            The number of jobs to run in parallel. If -1, all CPUs are used.
+        kwargs_est : dict
+            Additional keyword arguments for the risk estimate.
+
+        Returns:
+        --------
+        risk_ecv : np.ndarray or pandas.DataFrame
+            [M_test, ] The ECV estimate for each ensemble size in M_test.
+        &#39;&#39;&#39;
+        if M_test is None:
+            M_test = self.n_estimators
+        if M0 is None:
+            M0 = self.n_estimators
+        if M0&lt;2:
+            raise ValueError(&#39;The ensemble size M or M0 must be at least 2.&#39;)
+        if np.isscalar(M_test):
+            M_test = np.arange(1,M_test+1)
+        else:
+            M_test = np.array(M_test)
+        if Y_train.ndim==1:
+            Y_train = Y_train[:,None]
+        ids_list = self.estimators_samples_[:M0]
+        Y_hat = self.predict_individual(X_train, n_jobs)
+        dev_eval = Y_hat - Y_train
+        err_eval = dev_eval**2
+        
+        with Parallel(n_jobs=n_jobs, max_nbytes=None, verbose=0) as parallel:
+            res_1 = parallel(
+                delayed(lambda j:risk_estimate(
+                    np.delete(err_eval[:,j], ids_list[j]), **kwargs_est)
+                       )(j)
+                for j in np.arange(M0)
+            )
+            res_2 = parallel(
+                delayed(lambda i,j:risk_estimate(
+                    np.mean(
+                        np.delete(dev_eval[:,[i,j]], 
+                                  np.union1d(ids_list[i], ids_list[j]), axis=0), axis=1)**2,
+                    **kwargs_est
+                ))(i,j)
+                for i,j in itertools.combinations(np.arange(M0), 2)
+            )
+                    
+        risk_ecv_1 = np.nanmean(res_1)
+        risk_ecv_2 = np.nanmean(res_2)
+        risk_ecv = - (1-2/M_test) * risk_ecv_1 + 2*(1-1/M_test) * risk_ecv_2
+        if return_df:
+            df = pd.DataFrame({&#39;M&#39;:M_test, &#39;estimate&#39;:risk_ecv})
+            return df
+        else:
+            return risk_ecv
+        
+
+    def compute_gcv_estimate(self, X_train, Y_train, type=&#39;full&#39;, return_df=False, n_jobs=-1, **kwargs_est):
+        &#39;&#39;&#39;
+        Computes the GCV estimate for the given input data using the provided BaggingRegressor model.
+
+        Parameters
+        ----------
+        X_train : np.ndarray
+            [n, p] The input covariates.
+        Y_train : np.ndarray
+            [n, ] The target values of the input data.
+        type : str, optional
+            The type of GCV estimate to compute. Can be either &#39;full&#39; (the naive GCV using full observations) or 
+            &#39;union&#39; (the naive GCV using training observations).
+        return_df : bool, optional
+            If True, returns the GCV estimate as a pandas.DataFrame object.
+        n_jobs : int, optional
+            The number of jobs to run in parallel. If -1, all CPUs are used.
+        kwargs_est : dict
+            Additional keyword arguments for the risk estimate.
+
+        Returns:
+        --------
+        risk_gcv : np.ndarray or pandas.DataFrame
+            [M_test, ] The GCV estimate for each ensemble size in M_test.
+        &#39;&#39;&#39;
+        if self.base_estimator_.__class__.__name__ not in [&#39;Ridge&#39;, &#39;Lasso&#39;, &#39;ElasticNet&#39;]:
+            raise ValueError(&#39;GCV is only implemented for Ridge, Lasso, and ElasticNet regression.&#39;)
+        if Y_train.ndim==1:
+            Y_train = Y_train[:,None]
+        M = self.n_estimators
+        M_arr = np.arange(M)
+        ids_list = self.estimators_samples_
+        Y_hat = self.predict_individual(X_train, n_jobs)
+        Y_hat = np.cumsum(Y_hat, axis=1) / (M_arr+1)
+        n = X_train.shape[0]
+        err_eval = (Y_hat - Y_train)**2
+
+        with Parallel(n_jobs=n_jobs, max_nbytes=None, verbose=0) as parallel:
+            dof = parallel(
+                delayed(lambda j:degree_of_freedom(self.estimators_[j], X_train[ids_list[j]])
+                       )(j)
+                for j in M_arr
+            )
+            dof = np.mean(dof)
+
+        if type==&#39;full&#39;:
+            err_train = np.mean(err_eval, axis=0)
+            deno = (1 - dof/n)**2
+            risk_gcv = err_train / deno
+        else:            
+            ids_union_list = [reduce(np.union1d, ids_list[:j+1]) for j in M_arr]
+            n_ids = np.array([len(ids) for ids in ids_union_list])
+            err_train = np.array([np.mean(err_eval[ids_union_list[j],j]) for j in M_arr])
+            deno = (1 - dof/n_ids)**2
+            risk_gcv = err_train / deno
+        
+        if return_df:
+            df = pd.DataFrame({&#39;M&#39;:M_arr+1, &#39;estimate&#39;:risk_gcv, &#39;err_train&#39;:err_train, &#39;deno&#39;:deno})
+            return df
+        else:
+            return risk_gcv
+        
+    
+
+    def compute_cgcv_estimate(self, X_train, Y_train, type=&#39;full&#39;, return_df=False, n_jobs=-1, **kwargs_est):
+        &#39;&#39;&#39;
+        Computes the GCV estimate for the given input data using the provided BaggingRegressor model.
+
+        Parameters
+        ----------
+        X_train : np.ndarray
+            [n, p] The input covariates.
+        Y_train : np.ndarray
+            [n, ] The target values of the input data.
+        type : str, optional
+            The type of CGCV estimate to compute. Can be either &#39;full&#39; (using full observations) or 
+            &#39;ovlp&#39; (using overlapping observations).
+        return_df : bool, optional
+            If True, returns the GCV estimate as a pandas.DataFrame object.
+        n_jobs : int, optional
+            The number of jobs to run in parallel. If -1, all CPUs are used.
+        kwargs_est : dict
+            Additional keyword arguments for the risk estimate.
+
+        Returns:
+        --------
+        risk_gcv : np.ndarray or pandas.DataFrame
+            [M_test, ] The CGCV estimate for each ensemble size in M_test.
+        &#39;&#39;&#39;
+        if self.base_estimator_.__class__.__name__ not in [&#39;Ridge&#39;, &#39;Lasso&#39;, &#39;ElasticNet&#39;]:
+            raise ValueError(&#39;GCV is only implemented for Ridge, Lasso, and ElasticNet regression.&#39;)
+        if Y_train.ndim==1:
+            Y_train = Y_train[:,None]
+        M = self.n_estimators
+        M_arr = np.arange(M)
+        ids_list = self.estimators_samples_
+        Y_hat = self.predict_individual(X_train, n_jobs)
+          
+        n, p = X_train.shape
+        if self.estimators_[0].fit_intercept:
+            p += 1
+        phi = p/n
+        k = int(n * self.max_samples)
+        psi = p/k
+
+        with Parallel(n_jobs=n_jobs, max_nbytes=None, verbose=0) as parallel:
+            dof = parallel(
+                delayed(lambda j:degree_of_freedom(self.estimators_[j], X_train[ids_list[j]])
+                       )(j)
+                for j in M_arr
+            )
+            dof = np.mean(dof)
+
+        err_train = (Y_hat-Y_train)**2
+        if type==&#39;full&#39;:
+            correct_term = np.mean(err_train) / (1 - 2* dof/n + dof**2/(k*n))
+        else:
+            correct_term = np.mean([np.mean(err_train[ids_list[j],j]) for j in M_arr]) / (1 - dof/n)**2
+
+        Y_hat = np.cumsum(Y_hat, axis=1) / (M_arr+1)
+        err_eval = (Y_hat - Y_train)**2
+        err_train = np.array([np.mean(err_eval[:,j]) for j in M_arr])
+        deno = (1 - dof/n)**2
+        C = 1/ (n/dof - 1)**2 / (M_arr+1) * (psi/phi - 1) * correct_term
+        risk_cgcv = err_train / deno - C
+        
+        if return_df:
+            df = pd.DataFrame({&#39;M&#39;:M_arr+1, &#39;estimate&#39;:risk_cgcv, &#39;err_train&#39;:err_train, &#39;deno&#39;:deno, &#39;C&#39;:C})
+            return df
+        else:
+            return risk_cgcv</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>sklearn.ensemble._bagging.BaggingRegressor</li>
+<li>sklearn.base.RegressorMixin</li>
+<li>sklearn.ensemble._bagging.BaseBagging</li>
+<li>sklearn.ensemble._base.BaseEnsemble</li>
+<li>sklearn.base.MetaEstimatorMixin</li>
+<li>sklearn.base.BaseEstimator</li>
+<li>sklearn.utils._metadata_requests._MetadataRequester</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="sklearn_ensemble_cv.ensemble.Ensemble.predict_individual"><code class="name flex">
+<span>def <span class="ident">predict_individual</span></span>(<span>self: sklearn.ensemble._bagging.BaggingRegressor, X: numpy.ndarray, n_jobs: int = -1) -> numpy.ndarray</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Predicts the target values for the given input data using the provided BaggingRegressor model.</p>
+<h2 id="parameters">Parameters</h2>
+<pre><code>regr : BaggingRegressor
+    The BaggingRegressor model to use for prediction.
+X : np.ndarray
+    [n, p] The input data to predict target values for.
+</code></pre>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Y_hat </code></dt>
+<dd>np.ndarray
+[n, M] The predicted target values of all $M$ estimators for the input data.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def predict_individual(self: BaggingRegressor, X: np.ndarray, n_jobs: int=-1) -&gt; np.ndarray:
+    &#39;&#39;&#39;
+    Predicts the target values for the given input data using the provided BaggingRegressor model.
+
+    Parameters
+    ----------
+        regr : BaggingRegressor
+            The BaggingRegressor model to use for prediction.
+        X : np.ndarray
+            [n, p] The input data to predict target values for.
+
+    Returns:
+        Y_hat : np.ndarray
+            [n, M] The predicted target values of all $M$ estimators for the input data.
+    &#39;&#39;&#39;
+    with Parallel(n_jobs=n_jobs, max_nbytes=None, verbose=0) as parallel:
+        Y_hat = parallel(
+            delayed(lambda reg,X: reg.predict(X[:,features]).reshape(-1,1))(reg, X)
+            for reg,features in zip(self.estimators_,self.estimators_features_)
+        )
+    Y_hat = np.concatenate(Y_hat, axis=-1)
+    return Y_hat</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.ensemble.Ensemble.compute_risk"><code class="name flex">
+<span>def <span class="ident">compute_risk</span></span>(<span>self, X, Y, M_test=None, return_df=False, n_jobs=-1, **kwargs_est)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_risk(self, X, Y, M_test=None, return_df=False, n_jobs=-1, **kwargs_est):
+    if M_test is None:
+        M_test = self.n_estimators
+    if M_test&gt;self.n_estimators:
+        raise ValueError(&#39;The ensemble size M must be less than or equal to the number of estimators in the BaggingRegressor model.&#39;)
+    if Y.ndim==1:
+        Y = Y[:,None]
+
+    Y_hat = self.predict_individual(X, n_jobs)
+    Y_hat = np.cumsum(Y_hat, axis=1) / np.arange(1,M_test+1)
+    err_eval = (Y_hat - Y)**2
+    risk = risk_estimate(err_eval, axis=0, **kwargs_est)
+
+    if return_df:
+        df = pd.DataFrame({&#39;M&#39;:np.arange(1,M_test+1), &#39;risk&#39;:risk})
+        return df
+    else:
+        return risk</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.ensemble.Ensemble.compute_ecv_estimate"><code class="name flex">
+<span>def <span class="ident">compute_ecv_estimate</span></span>(<span>self, X_train, Y_train, M_test=None, M0=None, return_df=False, n_jobs=-1, **kwargs_est)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Computes the ECV estimate for the given input data using the provided BaggingRegressor model.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>X_train</code></strong> :&ensp;<code>np.ndarray</code></dt>
+<dd>[n, p] The input covariates.</dd>
+<dt><strong><code>Y_train</code></strong> :&ensp;<code>np.ndarray</code></dt>
+<dd>[n, ] The target values of the input data.</dd>
+<dt><strong><code>M_test</code></strong> :&ensp;<code>int</code> or <code>np.ndarray</code></dt>
+<dd>The maximum ensemble size of the ECV estimate.</dd>
+<dt><strong><code>M0</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>The number of estimators to use for the OOB estimate. If None, M0 is set to the number of estimators in the BaggingRegressor model.</dd>
+<dt><strong><code>return_df</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>If True, returns the ECV estimate as a pandas.DataFrame object.</dd>
+<dt><strong><code>n_jobs</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>The number of jobs to run in parallel. If -1, all CPUs are used.</dd>
+<dt><strong><code>kwargs_est</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional keyword arguments for the risk estimate.</dd>
+</dl>
+<h2 id="returns">Returns:</h2>
+<p>risk_ecv : np.ndarray or pandas.DataFrame
+[M_test, ] The ECV estimate for each ensemble size in M_test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_ecv_estimate(self, X_train, Y_train, M_test=None, M0=None, return_df=False, n_jobs=-1, **kwargs_est):
+    &#39;&#39;&#39;
+    Computes the ECV estimate for the given input data using the provided BaggingRegressor model.
+
+    Parameters
+    ----------
+    X_train : np.ndarray
+        [n, p] The input covariates.
+    Y_train : np.ndarray
+        [n, ] The target values of the input data.
+    M_test : int or np.ndarray
+        The maximum ensemble size of the ECV estimate.
+    M0 : int, optional
+        The number of estimators to use for the OOB estimate. If None, M0 is set to the number of estimators in the BaggingRegressor model.
+    return_df : bool, optional
+        If True, returns the ECV estimate as a pandas.DataFrame object.
+    n_jobs : int, optional
+        The number of jobs to run in parallel. If -1, all CPUs are used.
+    kwargs_est : dict
+        Additional keyword arguments for the risk estimate.
+
+    Returns:
+    --------
+    risk_ecv : np.ndarray or pandas.DataFrame
+        [M_test, ] The ECV estimate for each ensemble size in M_test.
+    &#39;&#39;&#39;
+    if M_test is None:
+        M_test = self.n_estimators
+    if M0 is None:
+        M0 = self.n_estimators
+    if M0&lt;2:
+        raise ValueError(&#39;The ensemble size M or M0 must be at least 2.&#39;)
+    if np.isscalar(M_test):
+        M_test = np.arange(1,M_test+1)
+    else:
+        M_test = np.array(M_test)
+    if Y_train.ndim==1:
+        Y_train = Y_train[:,None]
+    ids_list = self.estimators_samples_[:M0]
+    Y_hat = self.predict_individual(X_train, n_jobs)
+    dev_eval = Y_hat - Y_train
+    err_eval = dev_eval**2
+    
+    with Parallel(n_jobs=n_jobs, max_nbytes=None, verbose=0) as parallel:
+        res_1 = parallel(
+            delayed(lambda j:risk_estimate(
+                np.delete(err_eval[:,j], ids_list[j]), **kwargs_est)
+                   )(j)
+            for j in np.arange(M0)
+        )
+        res_2 = parallel(
+            delayed(lambda i,j:risk_estimate(
+                np.mean(
+                    np.delete(dev_eval[:,[i,j]], 
+                              np.union1d(ids_list[i], ids_list[j]), axis=0), axis=1)**2,
+                **kwargs_est
+            ))(i,j)
+            for i,j in itertools.combinations(np.arange(M0), 2)
+        )
+                
+    risk_ecv_1 = np.nanmean(res_1)
+    risk_ecv_2 = np.nanmean(res_2)
+    risk_ecv = - (1-2/M_test) * risk_ecv_1 + 2*(1-1/M_test) * risk_ecv_2
+    if return_df:
+        df = pd.DataFrame({&#39;M&#39;:M_test, &#39;estimate&#39;:risk_ecv})
+        return df
+    else:
+        return risk_ecv</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.ensemble.Ensemble.compute_gcv_estimate"><code class="name flex">
+<span>def <span class="ident">compute_gcv_estimate</span></span>(<span>self, X_train, Y_train, type='full', return_df=False, n_jobs=-1, **kwargs_est)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Computes the GCV estimate for the given input data using the provided BaggingRegressor model.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>X_train</code></strong> :&ensp;<code>np.ndarray</code></dt>
+<dd>[n, p] The input covariates.</dd>
+<dt><strong><code>Y_train</code></strong> :&ensp;<code>np.ndarray</code></dt>
+<dd>[n, ] The target values of the input data.</dd>
+<dt><strong><code>type</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The type of GCV estimate to compute. Can be either 'full' (the naive GCV using full observations) or
+'union' (the naive GCV using training observations).</dd>
+<dt><strong><code>return_df</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>If True, returns the GCV estimate as a pandas.DataFrame object.</dd>
+<dt><strong><code>n_jobs</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>The number of jobs to run in parallel. If -1, all CPUs are used.</dd>
+<dt><strong><code>kwargs_est</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional keyword arguments for the risk estimate.</dd>
+</dl>
+<h2 id="returns">Returns:</h2>
+<p>risk_gcv : np.ndarray or pandas.DataFrame
+[M_test, ] The GCV estimate for each ensemble size in M_test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_gcv_estimate(self, X_train, Y_train, type=&#39;full&#39;, return_df=False, n_jobs=-1, **kwargs_est):
+    &#39;&#39;&#39;
+    Computes the GCV estimate for the given input data using the provided BaggingRegressor model.
+
+    Parameters
+    ----------
+    X_train : np.ndarray
+        [n, p] The input covariates.
+    Y_train : np.ndarray
+        [n, ] The target values of the input data.
+    type : str, optional
+        The type of GCV estimate to compute. Can be either &#39;full&#39; (the naive GCV using full observations) or 
+        &#39;union&#39; (the naive GCV using training observations).
+    return_df : bool, optional
+        If True, returns the GCV estimate as a pandas.DataFrame object.
+    n_jobs : int, optional
+        The number of jobs to run in parallel. If -1, all CPUs are used.
+    kwargs_est : dict
+        Additional keyword arguments for the risk estimate.
+
+    Returns:
+    --------
+    risk_gcv : np.ndarray or pandas.DataFrame
+        [M_test, ] The GCV estimate for each ensemble size in M_test.
+    &#39;&#39;&#39;
+    if self.base_estimator_.__class__.__name__ not in [&#39;Ridge&#39;, &#39;Lasso&#39;, &#39;ElasticNet&#39;]:
+        raise ValueError(&#39;GCV is only implemented for Ridge, Lasso, and ElasticNet regression.&#39;)
+    if Y_train.ndim==1:
+        Y_train = Y_train[:,None]
+    M = self.n_estimators
+    M_arr = np.arange(M)
+    ids_list = self.estimators_samples_
+    Y_hat = self.predict_individual(X_train, n_jobs)
+    Y_hat = np.cumsum(Y_hat, axis=1) / (M_arr+1)
+    n = X_train.shape[0]
+    err_eval = (Y_hat - Y_train)**2
+
+    with Parallel(n_jobs=n_jobs, max_nbytes=None, verbose=0) as parallel:
+        dof = parallel(
+            delayed(lambda j:degree_of_freedom(self.estimators_[j], X_train[ids_list[j]])
+                   )(j)
+            for j in M_arr
+        )
+        dof = np.mean(dof)
+
+    if type==&#39;full&#39;:
+        err_train = np.mean(err_eval, axis=0)
+        deno = (1 - dof/n)**2
+        risk_gcv = err_train / deno
+    else:            
+        ids_union_list = [reduce(np.union1d, ids_list[:j+1]) for j in M_arr]
+        n_ids = np.array([len(ids) for ids in ids_union_list])
+        err_train = np.array([np.mean(err_eval[ids_union_list[j],j]) for j in M_arr])
+        deno = (1 - dof/n_ids)**2
+        risk_gcv = err_train / deno
+    
+    if return_df:
+        df = pd.DataFrame({&#39;M&#39;:M_arr+1, &#39;estimate&#39;:risk_gcv, &#39;err_train&#39;:err_train, &#39;deno&#39;:deno})
+        return df
+    else:
+        return risk_gcv</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.ensemble.Ensemble.compute_cgcv_estimate"><code class="name flex">
+<span>def <span class="ident">compute_cgcv_estimate</span></span>(<span>self, X_train, Y_train, type='full', return_df=False, n_jobs=-1, **kwargs_est)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Computes the GCV estimate for the given input data using the provided BaggingRegressor model.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>X_train</code></strong> :&ensp;<code>np.ndarray</code></dt>
+<dd>[n, p] The input covariates.</dd>
+<dt><strong><code>Y_train</code></strong> :&ensp;<code>np.ndarray</code></dt>
+<dd>[n, ] The target values of the input data.</dd>
+<dt><strong><code>type</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The type of CGCV estimate to compute. Can be either 'full' (using full observations) or
+'ovlp' (using overlapping observations).</dd>
+<dt><strong><code>return_df</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>If True, returns the GCV estimate as a pandas.DataFrame object.</dd>
+<dt><strong><code>n_jobs</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>The number of jobs to run in parallel. If -1, all CPUs are used.</dd>
+<dt><strong><code>kwargs_est</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional keyword arguments for the risk estimate.</dd>
+</dl>
+<h2 id="returns">Returns:</h2>
+<p>risk_gcv : np.ndarray or pandas.DataFrame
+[M_test, ] The CGCV estimate for each ensemble size in M_test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_cgcv_estimate(self, X_train, Y_train, type=&#39;full&#39;, return_df=False, n_jobs=-1, **kwargs_est):
+    &#39;&#39;&#39;
+    Computes the GCV estimate for the given input data using the provided BaggingRegressor model.
+
+    Parameters
+    ----------
+    X_train : np.ndarray
+        [n, p] The input covariates.
+    Y_train : np.ndarray
+        [n, ] The target values of the input data.
+    type : str, optional
+        The type of CGCV estimate to compute. Can be either &#39;full&#39; (using full observations) or 
+        &#39;ovlp&#39; (using overlapping observations).
+    return_df : bool, optional
+        If True, returns the GCV estimate as a pandas.DataFrame object.
+    n_jobs : int, optional
+        The number of jobs to run in parallel. If -1, all CPUs are used.
+    kwargs_est : dict
+        Additional keyword arguments for the risk estimate.
+
+    Returns:
+    --------
+    risk_gcv : np.ndarray or pandas.DataFrame
+        [M_test, ] The CGCV estimate for each ensemble size in M_test.
+    &#39;&#39;&#39;
+    if self.base_estimator_.__class__.__name__ not in [&#39;Ridge&#39;, &#39;Lasso&#39;, &#39;ElasticNet&#39;]:
+        raise ValueError(&#39;GCV is only implemented for Ridge, Lasso, and ElasticNet regression.&#39;)
+    if Y_train.ndim==1:
+        Y_train = Y_train[:,None]
+    M = self.n_estimators
+    M_arr = np.arange(M)
+    ids_list = self.estimators_samples_
+    Y_hat = self.predict_individual(X_train, n_jobs)
+      
+    n, p = X_train.shape
+    if self.estimators_[0].fit_intercept:
+        p += 1
+    phi = p/n
+    k = int(n * self.max_samples)
+    psi = p/k
+
+    with Parallel(n_jobs=n_jobs, max_nbytes=None, verbose=0) as parallel:
+        dof = parallel(
+            delayed(lambda j:degree_of_freedom(self.estimators_[j], X_train[ids_list[j]])
+                   )(j)
+            for j in M_arr
+        )
+        dof = np.mean(dof)
+
+    err_train = (Y_hat-Y_train)**2
+    if type==&#39;full&#39;:
+        correct_term = np.mean(err_train) / (1 - 2* dof/n + dof**2/(k*n))
+    else:
+        correct_term = np.mean([np.mean(err_train[ids_list[j],j]) for j in M_arr]) / (1 - dof/n)**2
+
+    Y_hat = np.cumsum(Y_hat, axis=1) / (M_arr+1)
+    err_eval = (Y_hat - Y_train)**2
+    err_train = np.array([np.mean(err_eval[:,j]) for j in M_arr])
+    deno = (1 - dof/n)**2
+    C = 1/ (n/dof - 1)**2 / (M_arr+1) * (psi/phi - 1) * correct_term
+    risk_cgcv = err_train / deno - C
+    
+    if return_df:
+        df = pd.DataFrame({&#39;M&#39;:M_arr+1, &#39;estimate&#39;:risk_cgcv, &#39;err_train&#39;:err_train, &#39;deno&#39;:deno, &#39;C&#39;:C})
+        return df
+    else:
+        return risk_cgcv</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.ensemble.Ensemble.set_fit_request"><code class="name flex">
+<span>def <span class="ident">set_fit_request</span></span>(<span>self: <a title="sklearn_ensemble_cv.ensemble.Ensemble" href="#sklearn_ensemble_cv.ensemble.Ensemble">Ensemble</a>, *, sample_weight: Union[bool, NoneType, str] = '$UNCHANGED$') -> <a title="sklearn_ensemble_cv.ensemble.Ensemble" href="#sklearn_ensemble_cv.ensemble.Ensemble">Ensemble</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Request metadata passed to the <code>fit</code> method.</p>
+<p>Note that this method is only relevant if
+<code>enable_metadata_routing=True</code> (see :func:<code>sklearn.set_config</code>).
+Please see :ref:<code>User Guide &lt;metadata_routing&gt;</code> on how the routing
+mechanism works.</p>
+<p>The options for each parameter are:</p>
+<ul>
+<li>
+<p><code>True</code>: metadata is requested, and passed to <code>fit</code> if provided. The request is ignored if metadata is not provided.</p>
+</li>
+<li>
+<p><code>False</code>: metadata is not requested and the meta-estimator will not pass it to <code>fit</code>.</p>
+</li>
+<li>
+<p><code>None</code>: metadata is not requested, and the meta-estimator will raise an error if the user provides it.</p>
+</li>
+<li>
+<p><code>str</code>: metadata should be passed to the meta-estimator with this given alias instead of the original name.</p>
+</li>
+</ul>
+<p>The default (<code>sklearn.utils.metadata_routing.UNCHANGED</code>) retains the
+existing request. This allows you to change the request for some
+parameters and not others.</p>
+<div class="admonition versionadded">
+<p class="admonition-title">Added in version:&ensp;1.3</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is only relevant if this estimator is used as a
+sub-estimator of a meta-estimator, e.g. used inside a
+:class:<code>~sklearn.pipeline.Pipeline</code>. Otherwise it has no effect.</p>
+</div>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>sample_weight</code></strong> :&ensp;<code>str, True, False,</code> or <code>None</code>,
+default=<code>sklearn.utils.metadata_routing.UNCHANGED</code></dt>
+<dd>Metadata routing for <code>sample_weight</code> parameter in <code>fit</code>.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>self</code></strong> :&ensp;<code>object</code></dt>
+<dd>The updated object.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def func(**kw):
+    &#34;&#34;&#34;Updates the request for provided parameters
+
+    This docstring is overwritten below.
+    See REQUESTER_DOC for expected functionality
+    &#34;&#34;&#34;
+    if not _routing_enabled():
+        raise RuntimeError(
+            &#34;This method is only available when metadata routing is enabled.&#34;
+            &#34; You can enable it using&#34;
+            &#34; sklearn.set_config(enable_metadata_routing=True).&#34;
+        )
+
+    if self.validate_keys and (set(kw) - set(self.keys)):
+        raise TypeError(
+            f&#34;Unexpected args: {set(kw) - set(self.keys)}. Accepted arguments&#34;
+            f&#34; are: {set(self.keys)}&#34;
+        )
+
+    requests = instance._get_metadata_request()
+    method_metadata_request = getattr(requests, self.name)
+
+    for prop, alias in kw.items():
+        if alias is not UNCHANGED:
+            method_metadata_request.add_request(param=prop, alias=alias)
+    instance._metadata_request = requests
+
+    return instance</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.ensemble.Ensemble.set_score_request"><code class="name flex">
+<span>def <span class="ident">set_score_request</span></span>(<span>self: <a title="sklearn_ensemble_cv.ensemble.Ensemble" href="#sklearn_ensemble_cv.ensemble.Ensemble">Ensemble</a>, *, sample_weight: Union[bool, NoneType, str] = '$UNCHANGED$') -> <a title="sklearn_ensemble_cv.ensemble.Ensemble" href="#sklearn_ensemble_cv.ensemble.Ensemble">Ensemble</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Request metadata passed to the <code>score</code> method.</p>
+<p>Note that this method is only relevant if
+<code>enable_metadata_routing=True</code> (see :func:<code>sklearn.set_config</code>).
+Please see :ref:<code>User Guide &lt;metadata_routing&gt;</code> on how the routing
+mechanism works.</p>
+<p>The options for each parameter are:</p>
+<ul>
+<li>
+<p><code>True</code>: metadata is requested, and passed to <code>score</code> if provided. The request is ignored if metadata is not provided.</p>
+</li>
+<li>
+<p><code>False</code>: metadata is not requested and the meta-estimator will not pass it to <code>score</code>.</p>
+</li>
+<li>
+<p><code>None</code>: metadata is not requested, and the meta-estimator will raise an error if the user provides it.</p>
+</li>
+<li>
+<p><code>str</code>: metadata should be passed to the meta-estimator with this given alias instead of the original name.</p>
+</li>
+</ul>
+<p>The default (<code>sklearn.utils.metadata_routing.UNCHANGED</code>) retains the
+existing request. This allows you to change the request for some
+parameters and not others.</p>
+<div class="admonition versionadded">
+<p class="admonition-title">Added in version:&ensp;1.3</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is only relevant if this estimator is used as a
+sub-estimator of a meta-estimator, e.g. used inside a
+:class:<code>~sklearn.pipeline.Pipeline</code>. Otherwise it has no effect.</p>
+</div>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>sample_weight</code></strong> :&ensp;<code>str, True, False,</code> or <code>None</code>,
+default=<code>sklearn.utils.metadata_routing.UNCHANGED</code></dt>
+<dd>Metadata routing for <code>sample_weight</code> parameter in <code>score</code>.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>self</code></strong> :&ensp;<code>object</code></dt>
+<dd>The updated object.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def func(**kw):
+    &#34;&#34;&#34;Updates the request for provided parameters
+
+    This docstring is overwritten below.
+    See REQUESTER_DOC for expected functionality
+    &#34;&#34;&#34;
+    if not _routing_enabled():
+        raise RuntimeError(
+            &#34;This method is only available when metadata routing is enabled.&#34;
+            &#34; You can enable it using&#34;
+            &#34; sklearn.set_config(enable_metadata_routing=True).&#34;
+        )
+
+    if self.validate_keys and (set(kw) - set(self.keys)):
+        raise TypeError(
+            f&#34;Unexpected args: {set(kw) - set(self.keys)}. Accepted arguments&#34;
+            f&#34; are: {set(self.keys)}&#34;
+        )
+
+    requests = instance._get_metadata_request()
+    method_metadata_request = getattr(requests, self.name)
+
+    for prop, alias in kw.items():
+        if alias is not UNCHANGED:
+            method_metadata_request.add_request(param=prop, alias=alias)
+    instance._metadata_request = requests
+
+    return instance</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="sklearn_ensemble_cv" href="index.html">sklearn_ensemble_cv</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="sklearn_ensemble_cv.ensemble.Ensemble" href="#sklearn_ensemble_cv.ensemble.Ensemble">Ensemble</a></code></h4>
+<ul class="">
+<li><code><a title="sklearn_ensemble_cv.ensemble.Ensemble.predict_individual" href="#sklearn_ensemble_cv.ensemble.Ensemble.predict_individual">predict_individual</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.ensemble.Ensemble.compute_risk" href="#sklearn_ensemble_cv.ensemble.Ensemble.compute_risk">compute_risk</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.ensemble.Ensemble.compute_ecv_estimate" href="#sklearn_ensemble_cv.ensemble.Ensemble.compute_ecv_estimate">compute_ecv_estimate</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.ensemble.Ensemble.compute_gcv_estimate" href="#sklearn_ensemble_cv.ensemble.Ensemble.compute_gcv_estimate">compute_gcv_estimate</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.ensemble.Ensemble.compute_cgcv_estimate" href="#sklearn_ensemble_cv.ensemble.Ensemble.compute_cgcv_estimate">compute_cgcv_estimate</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.ensemble.Ensemble.set_fit_request" href="#sklearn_ensemble_cv.ensemble.Ensemble.set_fit_request">set_fit_request</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.ensemble.Ensemble.set_score_request" href="#sklearn_ensemble_cv.ensemble.Ensemble.set_score_request">set_score_request</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
