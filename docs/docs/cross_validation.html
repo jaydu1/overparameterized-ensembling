@@ -16,7 +16,7 @@ permalink: /sklearn-ensemble-cv/docs/cross_validation.html
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
-<link id="hljs" rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<link id="hljs" rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github-dark.min.css" crossorigin>
 <style id="css-theme">
 :root[data-theme='theme-light']{--bg-highlight-color:#FFEE99;--bg-default:#FFFFFF;--bg-code:#EEEEEE;--bg-code-hover:#e0e0e0;--fc-default:#0F1A20;--fc-muted:#666666;--link-primary:#005588;--link-hover:#ee8822;--ident-primary:#990000;--hr-default:#666666;--bd-default:#DDDDDD;--bd-pre:#DDDDDD;--bd-primary:#666666;--adm-note:#abeeff;--adm-todo:#ddffdd;--adm-warning:#ffdd44;--adm-error:#feb6c1;--adm-bd-note:#abeeff;--adm-bd-todo:#ddffdd;--adm-bd-warning:#ffdd44;--adm-bd-error:#feb6c1}:root[data-theme='theme-dark']{--bg-highlight-color:#3e4951;--bg-default:#22282D;--bg-code:#3e4951;--bg-code-hover:#313b42;--fc-default:#ACBAC7;--fc-muted:#ACBAC7;--link-primary:#539bf5;--link-hover:#abcdf9;--ident-primary:#539bf5;--hr-default:#444d56;--bd-default:#444d56;--bd-pre:#3e4951;--bd-primary:#539bf5;--adm-note:rgba(65,132,288,0.1);--adm-todo:rgba(165,255,169,0.1);--adm-warning:rgba(255,221,68,0.2);--adm-error:rgba(254,182,193,0.2);--adm-bd-note:#539bf5;--adm-bd-todo:#a5ffa9;--adm-bd-warning:#ffdd44;--adm-bd-error:#feb6c1}@media (prefers-color-scheme:light){:root[data-theme='theme-light']{--bg-highlight-color:#FFEE99;--bg-default:#FFFFFF;--bg-code:#EEEEEE;--bg-code-hover:#e0e0e0;--fc-default:#0F1A20;--fc-muted:#666666;--link-primary:#005588;--link-hover:#ee8822;--ident-primary:#990000;--hr-default:#666666;--bd-default:#DDDDDD;--bd-pre:#DDDDDD;--bd-primary:#666666;--adm-note:#abeeff;--adm-todo:#ddffdd;--adm-warning:#ffdd44;--adm-error:#feb6c1;--adm-bd-note:#abeeff;--adm-bd-todo:#ddffdd;--adm-bd-warning:#ffdd44;--adm-bd-error:#feb6c1}}@media (prefers-color-scheme:dark){:root[data-theme='theme-dark']{--bg-highlight-color:#3e4951;--bg-default:#22282D;--bg-code:#3e4951;--bg-code-hover:#313b42;--fc-default:#ACBAC7;--fc-muted:#ACBAC7;--link-primary:#539bf5;--link-hover:#abcdf9;--ident-primary:#539bf5;--hr-default:#444d56;--bd-default:#444d56;--bd-pre:#3e4951;--bd-primary:#539bf5;--adm-note:rgba(65,132,288,0.1);--adm-todo:rgba(165,255,169,0.1);--adm-warning:rgba(255,221,68,0.2);--adm-error:rgba(254,182,193,0.2);--adm-bd-note:#539bf5;--adm-bd-todo:#a5ffa9;--adm-bd-warning:#ffdd44;--adm-bd-error:#feb6c1}}
 html {
@@ -426,9 +426,9 @@ const loadedTheme = window.localStorage.getItem("theme");
 if (loadedTheme) {
 html.dataset.theme = loadedTheme;
 if (loadedTheme == "theme-dark") {
-changeHLJS(`atom-one-dark`);
-} else {
 changeHLJS(`github`);
+} else {
+changeHLJS(`github-dark`);
 }
 }
 const onSystemThemeChange = (event) => {
@@ -438,13 +438,13 @@ if (event.matches) {
 html.dataset.theme = "theme-dark";
 iconOff.classList.add("hidden");
 iconOn.classList.remove("hidden");
-changeHLJS(`atom-one-dark`);
+changeHLJS(`github`);
 window.localStorage.setItem("theme", "theme-dark");
 } else {
 html.dataset.theme = "theme-light";
 iconOff.classList.remove("hidden");
 iconOn.classList.add("hidden");
-changeHLJS(`github`);
+changeHLJS(`github-dark`);
 window.localStorage.setItem("theme", "theme-light");
 }
 };
@@ -455,12 +455,12 @@ const iconOn = document.querySelector(".dm-icon-on");
 if (isDarkQuery.matches || loadedTheme == "theme-dark") {
 iconOff.classList.add("hidden");
 iconOn.classList.remove("hidden");
-changeHLJS(`atom-one-dark`);
+changeHLJS(`github`);
 }
 if ((!isDarkQuery.matches || loadedTheme == "theme-light") || !loadedTheme) {
 iconOff.classList.remove("hidden");
 iconOn.classList.add("hidden");
-changeHLJS(`github`);
+changeHLJS(`github-dark`);
 }
 });
 const toggleDarkMode = () => {
@@ -470,13 +470,13 @@ if (html.dataset.theme == "theme-dark") {
 html.dataset.theme = "theme-light";
 iconOff.classList.remove("hidden");
 iconOn.classList.add("hidden");
-changeHLJS(`github`);
+changeHLJS(`github-dark`);
 window.localStorage.setItem("theme", "theme-light");
 } else {
 html.dataset.theme = "theme-dark";
 iconOff.classList.add("hidden");
 iconOn.classList.remove("hidden");
-changeHLJS(`atom-one-dark`);
+changeHLJS(`github`);
 window.localStorage.setItem("theme", "theme-dark");
 }
 };
