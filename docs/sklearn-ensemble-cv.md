@@ -57,3 +57,5 @@ This project is currently in development. More CV methods will be added shortly.
 # Usage
 
 Check out Jupyter Notebook [demo.ipynb](https://github.com/jaydu1/ensemble-cross-validation/blob/main/demo.ipynb) about how to apply ECV/CGCV on risk estimation and hyperparameter tuning for ensemble learning.
+
+The [document](https://jaydu1.github.io/overparameterized-ensembling/sklearn-ensemble-cv/docs/index) is available.
