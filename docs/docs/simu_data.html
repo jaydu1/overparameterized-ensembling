@@ -1,3 +1,4 @@
+
 ---
 layout: default
 disable_anchors: true
@@ -512,7 +513,7 @@ def create_toeplitz_cov_mat(sigma_sq, first_column_except_1):
     first_column_except_1: array
         1d-array, except diagonal 1.
     
-    Return:
+    Returns
     ----------
         2d-array with dimension (len(first_column)+1, len(first_column)+1)
     &#39;&#39;&#39;
@@ -532,7 +533,7 @@ def ar1_cov(rho, n, sigma_sq=1):
     sigma_sq : float
         scalar, multiplicative factor of the covariance matrix.
     
-    Return
+    Returns
     ----------
         2d-matrix of (n,n)
     &#34;&#34;&#34;
@@ -553,7 +554,7 @@ def block_ar1_cov(rhos, n):
         array, should be within -1 and 1.
     n : int
     
-    Return
+    Returns
     ----------
         2d-matrix of (n,n)
     &#34;&#34;&#34;
@@ -706,7 +707,7 @@ def generate_data(
 <dt><strong><code>first_column_except_1</code></strong> :&ensp;<code>array</code></dt>
 <dd>1d-array, except diagonal 1.</dd>
 </dl>
-<h2 id="return">Return:</h2>
+<h2 id="returns">Returns</h2>
 <pre><code>2d-array with dimension (len(first_column)+1, len(first_column)+1)
 </code></pre></div>
 <details class="source">
@@ -722,7 +723,7 @@ def generate_data(
     first_column_except_1: array
         1d-array, except diagonal 1.
     
-    Return:
+    Returns
     ----------
         2d-array with dimension (len(first_column)+1, len(first_column)+1)
     &#39;&#39;&#39;
@@ -742,7 +743,7 @@ n : int
 scalar, number of rows and columns of the covariance matrix.
 sigma_sq : float
 scalar, multiplicative factor of the covariance matrix.</p>
-<h2 id="return">Return</h2>
+<h2 id="returns">Returns</h2>
 <pre><code>2d-matrix of (n,n)
 </code></pre></div>
 <details class="source">
@@ -760,7 +761,7 @@ scalar, multiplicative factor of the covariance matrix.</p>
     sigma_sq : float
         scalar, multiplicative factor of the covariance matrix.
     
-    Return
+    Returns
     ----------
         2d-matrix of (n,n)
     &#34;&#34;&#34;
@@ -784,7 +785,7 @@ scalar, multiplicative factor of the covariance matrix.</p>
 <dt><strong><code>n</code></strong> :&ensp;<code>int</code></dt>
 <dd>&nbsp;</dd>
 </dl>
-<h2 id="return">Return</h2>
+<h2 id="returns">Returns</h2>
 <pre><code>2d-matrix of (n,n)
 </code></pre></div>
 <details class="source">
@@ -799,7 +800,7 @@ scalar, multiplicative factor of the covariance matrix.</p>
         array, should be within -1 and 1.
     n : int
     
-    Return
+    Returns
     ----------
         2d-matrix of (n,n)
     &#34;&#34;&#34;

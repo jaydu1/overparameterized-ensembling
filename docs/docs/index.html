@@ -1,3 +1,4 @@
+
 ---
 layout: default
 disable_anchors: true
@@ -5,7 +6,6 @@ show_in_menu: false
 title: "Document for sklearn_ensemble_cv"
 permalink: /sklearn-ensemble-cv/docs/index.html
 ---
-
 
 <!doctype html>
 <html lang="en">
@@ -1297,7 +1297,8 @@ It provides additional methods for computing ECV estimates.</p></div>
             X : np.ndarray
                 [n, p] The input data to predict target values for.
 
-        Returns:
+        Returns
+        ----------
             Y_hat : np.ndarray
                 [n, M] The predicted target values of all $M$ estimators for the input data.
         &#39;&#39;&#39;
@@ -1351,7 +1352,7 @@ It provides additional methods for computing ECV estimates.</p></div>
         kwargs_est : dict
             Additional keyword arguments for the risk estimate.
 
-        Returns:
+        Returns
         --------
         risk_ecv : np.ndarray or pandas.DataFrame
             [M_test, ] The ECV estimate for each ensemble size in M_test.
@@ -1420,7 +1421,7 @@ It provides additional methods for computing ECV estimates.</p></div>
         kwargs_est : dict
             Additional keyword arguments for the risk estimate.
 
-        Returns:
+        Returns
         --------
         risk_gcv : np.ndarray or pandas.DataFrame
             [M_test, ] The GCV estimate for each ensemble size in M_test.
@@ -1484,7 +1485,7 @@ It provides additional methods for computing ECV estimates.</p></div>
         kwargs_est : dict
             Additional keyword arguments for the risk estimate.
 
-        Returns:
+        Returns
         --------
         risk_gcv : np.ndarray or pandas.DataFrame
             [M_test, ] The CGCV estimate for each ensemble size in M_test.
@@ -1555,9 +1556,10 @@ It provides additional methods for computing ECV estimates.</p></div>
 X : np.ndarray
     [n, p] The input data to predict target values for.
 </code></pre>
-<p>Returns:
-Y_hat : np.ndarray
-[n, M] The predicted target values of all $M$ estimators for the input data.</p></div>
+<h2 id="returns">Returns</h2>
+<pre><code>Y_hat : np.ndarray
+    [n, M] The predicted target values of all $M$ estimators for the input data.
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1573,7 +1575,8 @@ Y_hat : np.ndarray
         X : np.ndarray
             [n, p] The input data to predict target values for.
 
-    Returns:
+    Returns
+    ----------
         Y_hat : np.ndarray
             [n, M] The predicted target values of all $M$ estimators for the input data.
     &#39;&#39;&#39;
@@ -1637,9 +1640,11 @@ Y_hat : np.ndarray
 <dt><strong><code>kwargs_est</code></strong> :&ensp;<code>dict</code></dt>
 <dd>Additional keyword arguments for the risk estimate.</dd>
 </dl>
-<h2 id="returns">Returns:</h2>
-<p>risk_ecv : np.ndarray or pandas.DataFrame
-[M_test, ] The ECV estimate for each ensemble size in M_test.</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>risk_ecv</code></strong> :&ensp;<code>np.ndarray</code> or <code>pandas.DataFrame</code></dt>
+<dd>[M_test, ] The ECV estimate for each ensemble size in M_test.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1665,7 +1670,7 @@ Y_hat : np.ndarray
     kwargs_est : dict
         Additional keyword arguments for the risk estimate.
 
-    Returns:
+    Returns
     --------
     risk_ecv : np.ndarray or pandas.DataFrame
         [M_test, ] The ECV estimate for each ensemble size in M_test.
@@ -1735,9 +1740,11 @@ Y_hat : np.ndarray
 <dt><strong><code>kwargs_est</code></strong> :&ensp;<code>dict</code></dt>
 <dd>Additional keyword arguments for the risk estimate.</dd>
 </dl>
-<h2 id="returns">Returns:</h2>
-<p>risk_gcv : np.ndarray or pandas.DataFrame
-[M_test, ] The GCV estimate for each ensemble size in M_test.</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>risk_gcv</code></strong> :&ensp;<code>np.ndarray</code> or <code>pandas.DataFrame</code></dt>
+<dd>[M_test, ] The GCV estimate for each ensemble size in M_test.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1762,7 +1769,7 @@ Y_hat : np.ndarray
     kwargs_est : dict
         Additional keyword arguments for the risk estimate.
 
-    Returns:
+    Returns
     --------
     risk_gcv : np.ndarray or pandas.DataFrame
         [M_test, ] The GCV estimate for each ensemble size in M_test.
@@ -1826,9 +1833,11 @@ Y_hat : np.ndarray
 <dt><strong><code>kwargs_est</code></strong> :&ensp;<code>dict</code></dt>
 <dd>Additional keyword arguments for the risk estimate.</dd>
 </dl>
-<h2 id="returns">Returns:</h2>
-<p>risk_gcv : np.ndarray or pandas.DataFrame
-[M_test, ] The CGCV estimate for each ensemble size in M_test.</p></div>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>risk_gcv</code></strong> :&ensp;<code>np.ndarray</code> or <code>pandas.DataFrame</code></dt>
+<dd>[M_test, ] The CGCV estimate for each ensemble size in M_test.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1853,7 +1862,7 @@ Y_hat : np.ndarray
     kwargs_est : dict
         Additional keyword arguments for the risk estimate.
 
-    Returns:
+    Returns
     --------
     risk_gcv : np.ndarray or pandas.DataFrame
         [M_test, ] The CGCV estimate for each ensemble size in M_test.
