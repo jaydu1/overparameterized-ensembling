@@ -26,7 +26,7 @@ The experiments demonstrate the utility of ECV on bagging (bootstrap aggregating
 - Logistic regression,
 - Decision tree (for building random forests).
 
-The code for reproducing results of this paper is available at [Github](https://github.com/jaydu1/ecv).
+The code for reproducing results of this paper is available at [Github](https://github.com/jaydu1/overparameterized-ensembling/tree/main/paper/ecv).
 
 
 
