@@ -8,7 +8,7 @@ permalink: /projects/
 This repo contains code for reproducing results in the following papers:
 
 
-Codename | Paper | Link
+Codename | Paper | Links
 ---|---|---
 [bagging]({{ site.baseurl }}/bagging) | Patil, Pratik, Jin-Hong Du, and Arun Kumar Kuchibhotla. "Bagging in overparameterized learning: Risk characterization and risk monotonization." Journal of Machine Learning Research (2023) | [[JMLR]](http://jmlr.org/papers/v24/23-0887.html) [[arXiv]](https://doi.org/10.48550/arXiv.2210.11445) [[Github]](https://github.com/jaydu1/overparameterized-ensembling/tree/main/paper/bagging)
 [ecv]({{ site.baseurl }}/ecv)  | Jin-Hong Du, Pratik Patil, Kathryn Roeder, and Arun Kumar Kuchibhotla, "Extrapolated cross-validation for randomized ensembles". In: *Journal of Computational and Graphical Statistics* (2023) | [[arXiv]](https://arxiv.org/abs/2302.13511) [[DOI]](https://doi.org/10.1080/10618600.2023.2288194) [[Github]](https://github.com/jaydu1/overparameterized-ensembling/tree/main/paper/ecv)
