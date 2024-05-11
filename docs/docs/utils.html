@@ -500,7 +500,7 @@ window.localStorage.setItem("theme", "theme-dark");
 import random
 import numpy as np
 import pandas as pd
-from itertools import product
+from itertools import product, combinations
 
 
 def reset_random_seeds(seed):
@@ -543,7 +543,7 @@ def risk_estimate(sq_err, axis=None, method=&#39;AVG&#39;, **kwargs):
 
     Parameters
     ----------
-    sq_err : 1d-array
+    sq_err : 2d-array
         The squared error.
     method : str
         The method to use for risk estimation. Either &#39;AVG&#39; or &#39;MOM&#39;.
@@ -618,6 +618,59 @@ def estimate_null_risk(Y):
 
 
 
+def _avg_sq_err_M(x, M, M_max, axis=0, **kwargs_est):
+    &#39;&#39;&#39;
+    Compute the average of all combinations of M of all columns.
+
+    Parameters
+    ----------
+    x : 2d-array
+        The data of shape [n,M].
+    M : int
+        The number of columns to combine.
+    M_max : int
+        The maximum combinations number of columns to combine.
+
+    Returns
+    -------
+    avg_sq_err : float
+        The average squared error of the M-ensemble.
+    &#39;&#39;&#39;
+    if M==1:
+        return np.mean(x**2, axis=1)
+    else:
+        iter = 0
+        err = []
+        for id in combinations(np.arange(x.shape[1]), M):
+            if iter &gt;= M_max:
+                break
+            err.append(np.mean(x[:,id], axis=1))
+            iter += 1
+        err = np.c_[err]**2
+        return np.mean(err, axis=0)
+
+
+def avg_sq_err(err, M_max=None):
+    &#39;&#39;&#39;
+    Compute the average squared error.
+
+    Parameters
+    ----------
+    err : 2d-array
+        The squared errors of shape [n,M].
+
+    Returns
+    -------
+    risk : 1d-array
+        The estimated squared errors of the M-ensembles.
+    &#39;&#39;&#39;
+    if M_max is None:
+        M_max = np.ones(err.shape[1]) * 500
+        M_max[np.arange(err.shape[1])&gt;10] = 10
+        M_max = M_max.astype(int)
+    risk = np.fromiter((_avg_sq_err_M(err, M+1, M_max[M]) for M in np.arange(err.shape[1])), 
+                       dtype=np.dtype((float, err.shape[0]))).T
+    return risk
 
 ####################################################################################################
 #
@@ -839,7 +892,7 @@ def check_input(kwargs_regr, kwargs_ensemble, kwargs_est, M):
 <div class="desc"><p>Compute the risk estimate from the squared error.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>sq_err</code></strong> :&ensp;<code>1d-array</code></dt>
+<dt><strong><code>sq_err</code></strong> :&ensp;<code>2d-array</code></dt>
 <dd>The squared error.</dd>
 <dt><strong><code>method</code></strong> :&ensp;<code>str</code></dt>
 <dd>The method to use for risk estimation. Either 'AVG' or 'MOM'.</dd>
@@ -856,7 +909,7 @@ def check_input(kwargs_regr, kwargs_ensemble, kwargs_est, M):
 
     Parameters
     ----------
-    sq_err : 1d-array
+    sq_err : 2d-array
         The squared error.
     method : str
         The method to use for risk estimation. Either &#39;AVG&#39; or &#39;MOM&#39;.
@@ -958,6 +1011,48 @@ def check_input(kwargs_regr, kwargs_ensemble, kwargs_est, M):
     &#39;&#39;&#39;
     mu = 0.
     return np.mean((Y-mu)**2)</code></pre>
+</details>
+</dd>
+<dt id="sklearn_ensemble_cv.utils.avg_sq_err"><code class="name flex">
+<span>def <span class="ident">avg_sq_err</span></span>(<span>err, M_max=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the average squared error.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>err</code></strong> :&ensp;<code>2d-array</code></dt>
+<dd>The squared errors of shape [n,M].</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>risk</code></strong> :&ensp;<code>1d-array</code></dt>
+<dd>The estimated squared errors of the M-ensembles.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def avg_sq_err(err, M_max=None):
+    &#39;&#39;&#39;
+    Compute the average squared error.
+
+    Parameters
+    ----------
+    err : 2d-array
+        The squared errors of shape [n,M].
+
+    Returns
+    -------
+    risk : 1d-array
+        The estimated squared errors of the M-ensembles.
+    &#39;&#39;&#39;
+    if M_max is None:
+        M_max = np.ones(err.shape[1]) * 500
+        M_max[np.arange(err.shape[1])&gt;10] = 10
+        M_max = M_max.astype(int)
+    risk = np.fromiter((_avg_sq_err_M(err, M+1, M_max[M]) for M in np.arange(err.shape[1])), 
+                       dtype=np.dtype((float, err.shape[0]))).T
+    return risk</code></pre>
 </details>
 </dd>
 <dt id="sklearn_ensemble_cv.utils.split_grid"><code class="name flex">
@@ -1240,6 +1335,7 @@ def check_input(kwargs_regr, kwargs_ensemble, kwargs_est, M):
 <li><code><a title="sklearn_ensemble_cv.utils.risk_estimate" href="#sklearn_ensemble_cv.utils.risk_estimate">risk_estimate</a></code></li>
 <li><code><a title="sklearn_ensemble_cv.utils.degree_of_freedom" href="#sklearn_ensemble_cv.utils.degree_of_freedom">degree_of_freedom</a></code></li>
 <li><code><a title="sklearn_ensemble_cv.utils.estimate_null_risk" href="#sklearn_ensemble_cv.utils.estimate_null_risk">estimate_null_risk</a></code></li>
+<li><code><a title="sklearn_ensemble_cv.utils.avg_sq_err" href="#sklearn_ensemble_cv.utils.avg_sq_err">avg_sq_err</a></code></li>
 <li><code><a title="sklearn_ensemble_cv.utils.split_grid" href="#sklearn_ensemble_cv.utils.split_grid">split_grid</a></code></li>
 <li><code><a title="sklearn_ensemble_cv.utils.make_grid" href="#sklearn_ensemble_cv.utils.make_grid">make_grid</a></code></li>
 <li><code><a title="sklearn_ensemble_cv.utils.process_grid" href="#sklearn_ensemble_cv.utils.process_grid">process_grid</a></code></li>
