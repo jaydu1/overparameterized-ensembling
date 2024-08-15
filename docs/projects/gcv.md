@@ -2,7 +2,7 @@
 layout: page
 disable_anchors: true
 show_in_menu: false
-title: "Subsample Ridge Ensembles: Equivalences and Generalized Cross-Validation"
+title: "Subsample ridge ensembles: equivalences and generalized cross-validation"
 permalink: /gcv/
 ---
 

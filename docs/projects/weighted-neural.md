@@ -2,8 +2,8 @@
 layout: page
 disable_anchors: true
 show_in_menu: false
-title: "Generalized equivalences between subsampling and ridge regularization"
-permalink: /equiv/
+title: "Implicit regularization paths of weighted neural representations"
+permalink: /weighted-neural/
 ---
 
 
@@ -17,7 +17,7 @@ For tuning in practice, we develop an efficient cross-validation method and appl
 
 # Code
 
-The code for reproducing results of this paper is available at [Github](https://github.com/jaydu1/overparameterized-ensembling/tree/main/paper/neural).
+The code for reproducing results of this paper is available at [Github](https://github.com/jaydu1/overparameterized-ensembling/tree/main/paper/weighted-neural).
 
 ## Scripts
 

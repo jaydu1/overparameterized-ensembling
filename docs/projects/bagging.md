@@ -1,7 +1,7 @@
 ---
 layout: page
 show_in_menu: false
-title: "Bagging in overparameterized learning: Risk characterization and risk monotonization"
+title: "Bagging in overparameterized learning: risk characterization and risk monotonization"
 permalink: /bagging/
 ---
 
