@@ -5,6 +5,11 @@ title: "sklearn_ensemble_cv"
 permalink: /sklearn-ensemble-cv/
 ---
 
+
+
+[![PyPI](https://img.shields.io/pypi/v/sklearn_ensemble_cv?label=pypi)](https://pypi.org/project/sklearn-ensemble-cv)
+[![PyPI-Downloads](https://img.shields.io/pepy/dt/sklearn_ensemble_cv)](https://pepy.tech/project/sklearn_ensemble_cv)
+
 # Ensemble-cross-validation
 
 
@@ -51,11 +56,24 @@ This project is currently in development. More CV methods will be added shortly.
 - [x] ECV
 - [x] GCV
 - [x] CGCV
-- [ ] CGCV non-square loss
+- [x] CGCV non-square loss
 - [ ] ALOCV
 
 # Usage
 
-Check out Jupyter Notebook [demo.ipynb](https://github.com/jaydu1/ensemble-cross-validation/blob/main/demo.ipynb) about how to apply ECV/CGCV on risk estimation and hyperparameter tuning for ensemble learning.
+
+Check out Jupyter Notebooks in the [tutorials](https://github.com/jaydu1/ensemble-cross-validation/blob/main/tutorials) folder:
+
+Name | Description
+---|---
+[basics.ipynb](https://github.com/jaydu1/ensemble-cross-validation/blob/main/tutorials/demo.ipynb) | Basics about how to apply ECV/CGCV on risk estimation and hyperparameter tuning for ensemble learning. 
+[cgcv_l1_huber.ipynb](https://github.com/jaydu1/ensemble-cross-validation/blob/main/tutorials/cgcv_l1_huber.ipynb) | Custom CGCV for M-estimator: l1-regularized Huber ensembles. 
+
+The code is tested with `scikit-learn == 1.3.1`.
 
 The [document](https://jaydu1.github.io/overparameterized-ensembling/sklearn-ensemble-cv/docs/index) is available.
+
+The module can be installed via PyPI:
+```cmd
+pip install sklearn-ensemble-cv
+```
