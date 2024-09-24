@@ -1,3 +1,6 @@
 [submodule "paper/cgcv"]
 	path = paper/cgcv
 	url = https://github.com/kaitan365/CorrectedGCV/
+[submodule "paper/subagging-asymptotics"]
+	path = paper/subagging-asymptotics
+	url = https://github.com/jaydu1/subagging-asymptotics/
