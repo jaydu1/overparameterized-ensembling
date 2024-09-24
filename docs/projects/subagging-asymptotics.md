@@ -2,8 +2,8 @@
 layout: page
 disable_anchors: true
 show_in_menu: false
-title: "Implicit regularization paths of weighted neural representations"
-permalink: /weighted-neural/
+title: "Precise asymptotics of bagging regularized M-estimators"
+permalink: /subagging-asymptotics/
 ---
 
 
