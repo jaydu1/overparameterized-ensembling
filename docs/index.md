@@ -27,7 +27,7 @@ This website summarizes a collection of specialized ensemble cross-validation me
 {:.mt-lg-0}
 
 - [Projects and references]({{ site.baseurl }}/projects): A full list of related methods and their reproducing codes.
-- [Python Package]({{ site.baseurl }}/sklearn-ensemble-cv): A Python module for performing accurate and efficient ensemble cross-validation methods.
+- [Python Package](https://sklearn-ensemble-cv.readthedocs.io/): A Python module for performing accurate and efficient ensemble cross-validation methods.
 
 
 </div>
